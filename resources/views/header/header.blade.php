@@ -56,7 +56,6 @@
                                 </form>
                             </li>
                         </ul> --}}
-
                         <ul class="mb-0 nav navbar-right ml-auto list-inline">
                             <li class="list-inline-item dropdown notification-list">
                                 <a href="#" data-target="#"
@@ -162,6 +161,10 @@
 
                             <li class="has-submenu">
                                 <a href="{{route('operation.create')}}"><i class="ti-files"></i> Nouvelle opération </a>
+                            </li>
+
+                            <li class="has-submenu">
+                                <a href="{{route('operation.create')}}"><i class="ti-files"></i> Configuration </a>
                             </li>
 
                         </ul>
