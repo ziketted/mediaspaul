@@ -87,31 +87,11 @@
                                                             <div class="col-lg-6 p-1">
                                                                 <a href="#">
                                                                     <div class="shadow rounded">
-                                                                        <i class="fas fa-dollar-sign fa-5x p-5"></i>
+                                                                       
                                                                     </div>
                                                                 </a>
                                                             </div>
-                                                            <div class="col-lg-6 p-1">
-                                                                <a href="#">
-                                                                    <div class="shadow rounded">
-                                                                        <i class="fas fa-dollar-sign fa-5x p-5"></i>
-                                                                    </div>
-                                                                </a>
-                                                            </div>
-                                                            <div class="col-lg-6 p-1">
-                                                                <a href="#">
-                                                                    <div class="shadow rounded">
-                                                                        <i class="fas fa-dollar-sign fa-5x p-5"></i>
-                                                                    </div>
-                                                                </a>
-                                                            </div>
-                                                            <div class="col-lg-6 p-1">
-                                                                <a href="#">
-                                                                    <div class="shadow rounded">
-                                                                        <i class="fas fa-dollar-sign fa-5x p-5"></i>
-                                                                    </div>
-                                                                </a>
-                                                            </div>
+                                                           
                                                         </div>
                                                     </div>
                                                 </div>
