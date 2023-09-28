@@ -81,14 +81,27 @@
                                                     <h4 class="modal-title m-0" id="custom-width-modalLabel">Choisissez une caisse</h4>
                                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                                 </div>
-                                                <div class="modal-body">
+                                                <div class="modal-body p-5">
                                                     <div class="container">
                                                         <div class="row">
-                                                            <div class="col-lg-6 p-1">
-                                                                <a href="#">
-                                                                    <div class="shadow rounded">
-                                                                       
-                                                                    </div>
+                                                            <div class="col-lg-12 p-1">
+                                                                <a href="/operation/<?= base64_encode(1) ; ?>" class="btn btn-block btn-danger text-uppercase">
+                                                                       Caisse principale USD
+                                                                </a>
+                                                            </div>
+                                                            <div class="col-lg-12 p-1">
+                                                                <a href="operation/<?= base64_encode(2) ; ?>" class="btn btn-block btn-danger text-uppercase">
+                                                                       Caisse Principale EUR
+                                                                </a>
+                                                            </div>
+                                                            <div class="col-lg-12 p-1">
+                                                                <a href="operation/<?= base64_encode(3) ; ?>" class="btn btn-block btn-danger text-uppercase">
+                                                                       Caisse principale FCFA
+                                                                </a>
+                                                            </div>
+                                                            <div class="col-lg-12 p-1">
+                                                                <a href="operation/<?= base64_encode(4) ; ?>" class="btn btn-block btn-danger text-uppercase">
+                                                                       Caisse principale FC
                                                                 </a>
                                                             </div>
                                                            

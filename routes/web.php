@@ -28,13 +28,14 @@ Route::get('/dashboard', [OperationsController::class, 'index'])->middleware(['a
 
 Route::name('operation.')->group(function () {
     Route::get('/operation/index', [OperationsController::class, 'index'])->middleware(['auth'])->name('index');
+    Route::get('/operation/caisse', [OperationsController::class, 'index'])->middleware(['auth'])->name('caisse');
     Route::post('/operation/store', [OperationsController::class, 'store'])->middleware(['auth'])->name('store');
     Route::get('/operation', [OperationsController::class, 'create'])->middleware(['auth'])->name('create');
     Route::get('/operation/show/{operation}', [OperationsController::class, 'show'])->name('show');
     Route::get('/rapport', [OperationsController::class, 'rapport'])->name('rapport');
     Route::delete('/operation/{operation}', [OperationsController::class, 'destroy'])->name('destroy');
-});
 
+});
 
 
 
