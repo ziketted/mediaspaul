@@ -11,15 +11,32 @@ class Operations extends Model
     use HasFactory, SoftDeletes;
     protected $fillable = [
         'user_id',
+        'libelle',
         'date',
         'type',
         'montant',
-        'beneficiaire',
+        'secteur',
+        'financement',
+        'centre',
+        'devise',
+        'status',
         'description',
     ];
 
     public function user()
     {
         return $this->belongsTo(\App\Models\User::class);
+    }
+    public function centre()
+    {
+        return $this->belongsTo(\App\Models\Centre::class);
+    }
+    public function secteur()
+    {
+        return $this->belongsTo(\App\Models\Secteur::class);
+    }
+    public function finance()
+    {
+        return $this->belongsTo(\App\Models\Financement::class);
     }
 }
