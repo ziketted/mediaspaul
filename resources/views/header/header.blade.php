@@ -9,7 +9,7 @@
     <meta content="ThemeDesign" name="author" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <link rel="shortcut icon" href="assets/images/favicon.ico">
+    <link rel="shortcut icon" href="https://upload.wikimedia.org/wikipedia/commons/f/f8/Logo_M%C3%A9diaspaul.png">
 
     <!--Morris Chart CSS -->
     <link rel="stylesheet" href="assets/plugins/morris/morris.css">
@@ -26,10 +26,11 @@
     <link href="assets/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css" rel="stylesheet">
     <link href="assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
     <link href="assets/plugins/bootstrap-touchspin/css/jquery.bootstrap-touchspin.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 
 <body>
-
+   
     <div class="header-bg">
         <!-- Navigation Bar-->
         <header id="topnav">
@@ -38,11 +39,11 @@
 
                     <!-- Logo-->
                     <div>
-                        <a href="index.html" class="logo text-primary m-2 p-1">
+                        <a href="index.html" class="logo text-primary m-2 p-1 d-flex align-items-end">
                             {{-- <img src="assets/images/logo-light.png" class="logo-lg" alt="" height="26">
                             <img src="assets/images/logo-sm.png" class="logo-sm" alt="" height="28"> --}}
-
-                            <h4> Dépenses journalières.</h4>
+                            <img src="https://www.mediaspaul.cd/images/logo-mediaspaul-small.png" alt="logo-mediaspaul" height="50">
+                            <h6> Caisse.</h6>
                         </a>
                     </div>
                     <!-- End Logo-->
@@ -57,7 +58,7 @@
                             </li>
                         </ul> --}}
                         <ul class="mb-0 nav navbar-right ml-auto list-inline">
-                            <li class="list-inline-item dropdown notification-list">
+                           {{--  <li class="list-inline-item dropdown notification-list">
                                 <a href="#" data-target="#"
                                     class="dropdown-toggle waves-effect waves-light notification-icon-box"
                                     data-toggle="dropdown" aria-expanded="true">
@@ -82,7 +83,7 @@
                                         </a>
                                     </li>
                                 </ul>
-                            </li>
+                            </li> --}}
 
                             <li class="list-inline-item notification-list d-none d-sm-inline-block">
                                 <a href="#" id="btn-fullscreen"
@@ -141,7 +142,7 @@
             <!-- end topbar-main -->
 
             <!-- MENU Start -->
-            <div class="navbar-custom">
+            <div class="navbar-custom bg-dark">
                 <div class="container-fluid">
 
                     <div id="navigation">
@@ -164,7 +165,25 @@
                             </li>
 
                             <li class="has-submenu">
-                                <a href="{{route('operation.create')}}"><i class="ti-files"></i> Configuration </a>
+                                <a href="#"><i class="fas fa-gear"></i> Confirugation <i class="mdi mdi-chevron-down mdi-drop"></i></a>
+                                <ul class="submenu megamenu">
+                                    <li>
+                                        <ul>
+                                            <li><a href="#">Centre D'intérêt</a></li>
+                                            <li><a href="#">Financement</a></li>
+                                            <li><a href="#">Secteur</a></li>                                        
+                                        </ul>
+                                    </li>
+                                    {{-- <li>
+                                        <ul>
+                                            <li><a href="ui-progressbars.html">Progress Bars</a></li>
+                                            <li><a href="ui-alerts.html">Alerts</a></li>
+                                            <li><a href="ui-sweet-alert.html">Sweet-Alert</a></li>
+                                            <li><a href="ui-grid.html">Grid</a></li>
+                                            <li><a href="typography.html">Typography</a></li>
+                                        </ul>
+                                    </li> --}}
+                                </ul>
                             </li>
 
                         </ul>
