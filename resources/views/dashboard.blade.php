@@ -95,12 +95,12 @@
                                                                 </a>
                                                             </div>
                                                             <div class="col-lg-12 p-1">
-                                                                <a href="{{route('operation.cret')}}" class="btn btn-block btn-danger text-uppercase">
+                                                                <a href="{{route('operation.create')}}" class="btn btn-block btn-danger text-uppercase">
                                                                        Caisse principale FCFA
                                                                 </a>
                                                             </div>
                                                             <div class="col-lg-12 p-1">
-                                                                <a href="{{route('operation.caisse')}}" class="btn btn-block btn-danger text-uppercase">
+                                                                <a href="{{route('operation.create')}}" class="btn btn-block btn-danger text-uppercase">
                                                                        Caisse principale FC
                                                                 </a>
                                                             </div>
