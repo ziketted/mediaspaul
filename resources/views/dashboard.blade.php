@@ -71,12 +71,57 @@
 
 
                             <div>
-                                <a href="{{route('operation.create')}}" class="btn btn-primary"> + Ajouter une
+                                <a href="{{route('operation.create')}}" class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target="#custom-width-modal"> + Ajouter une
                                     opération</a>
+
+                                    <div id="custom-width-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title m-0" id="custom-width-modalLabel">Choisissez une caisse</h4>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="container">
+                                                        <div class="row">
+                                                            <div class="col-lg-6 p-1">
+                                                                <a href="#">
+                                                                    <div class="shadow rounded">
+                                                                        <i class="fas fa-dollar-sign fa-5x p-5"></i>
+                                                                    </div>
+                                                                </a>
+                                                            </div>
+                                                            <div class="col-lg-6 p-1">
+                                                                <a href="#">
+                                                                    <div class="shadow rounded">
+                                                                        <i class="fas fa-dollar-sign fa-5x p-5"></i>
+                                                                    </div>
+                                                                </a>
+                                                            </div>
+                                                            <div class="col-lg-6 p-1">
+                                                                <a href="#">
+                                                                    <div class="shadow rounded">
+                                                                        <i class="fas fa-dollar-sign fa-5x p-5"></i>
+                                                                    </div>
+                                                                </a>
+                                                            </div>
+                                                            <div class="col-lg-6 p-1">
+                                                                <a href="#">
+                                                                    <div class="shadow rounded">
+                                                                        <i class="fas fa-dollar-sign fa-5x p-5"></i>
+                                                                    </div>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div><!-- /.modal-content -->
+                                        </div><!-- /.modal-dialog -->
+                                    </div>
                             </div>
 
                             <p class="mt-4 mb-0 text-muted">Passez une opération d'entrée ou sortie de caisse.<span
-                                    class="float-right"><i class="fa fa-caret-up m-r-5"></i></span></p>
+                                    class="float-right"></span></p>
                         </div>
                     </div>
                 </div>

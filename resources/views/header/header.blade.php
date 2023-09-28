@@ -27,6 +27,8 @@
     <link href="assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
     <link href="assets/plugins/bootstrap-touchspin/css/jquery.bootstrap-touchspin.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+      <!-- Bootstrap CSS v5.2.1 -->
+
 </head>
 
 <body>
@@ -165,7 +167,7 @@
                             </li>
 
                             <li class="has-submenu">
-                                <a href="#"><i class="fas fa-gear"></i> Confirugation <i class="mdi mdi-chevron-down mdi-drop"></i></a>
+                                <a href="#"><i class="ti-settings"></i> Confirugation <i class="mdi mdi-chevron-down mdi-drop"></i></a>
                                 <ul class="submenu megamenu">
                                     <li>
                                         <ul>
