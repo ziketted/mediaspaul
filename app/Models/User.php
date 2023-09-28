@@ -46,4 +46,17 @@ class User extends Authenticatable
     {
         return $this->hasMany(\App\Models\Operations::class);
     }
+    public function secteurUser()
+    {
+        return $this->hasMany(\App\Models\Secteur::class);
+    }
+
+    public function financeUser()
+    {
+        return $this->hasMany(\App\Models\Financement::class);
+    }
+    public function centreUser()
+    {
+        return $this->hasMany(\App\Models\Centre::class);
+    }
 }

@@ -75,11 +75,18 @@ class OperationsController extends Controller
      */
     public function store(Request $request, Operations $operation)
     {
+
+        $operation->secteur_id= $request->secteur_id;
+        $operation->financement_id = $request->financement_id;
+        $operation->centre_id = $request->centre_id;
+        $operation->devise = $request->devise;
+        $operation->libelle = $request->libelle;
         $operation->date = $request->date;
         $operation->montant = $request->montant;
         $operation->beneficiaire = $request->beneficiaire;
         $operation->user_id = auth()->user()->id;
         $operation->type = $request->type;
+        $operation->status = $request->status;
         $operation->description = $request->description;
         $operation->save();
         return redirect()->route('dashboard');
@@ -114,9 +121,21 @@ class OperationsController extends Controller
      * @param  \App\Models\Operations  $operations
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateOperationsRequest $request, Operations $operations)
+    public function update(Request $request, Operations $operations)
     {
-        //
+        $status = "Encours";
+
+        if ($request->has('valider')) {
+
+            $status = "valider";
+        } else {
+            $status = "encours";
+        }
+        /* dd($request->description); */
+        Operations::where('id', $request->id)
+            ->update([
+                'status' => $status,
+            ]);
     }
 
     /**
