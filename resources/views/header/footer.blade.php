@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
-                © Soccermidable <span class="d-none d-md-inline-block"> - by
+                © MediaSpaul <span class="d-none d-md-inline-block"> - by
                     affirmativeGroup.</span>
             </div>
         </div>
