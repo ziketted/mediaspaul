@@ -1,4 +1,6 @@
 @include('header.header')
+
+
 <div class="wrapper">
     <div class="container-fluid">
         <!-- Page-Title -->
@@ -71,7 +73,7 @@
 
 
                             <div>
-                                <a href="{{route('operation.create')}}" class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target="#custom-width-modal"> + Ajouter une
+                                <a href="#" class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target="#custom-width-modal"> + Ajouter une
                                     opération</a>
 
                                     <div id="custom-width-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true">
@@ -84,27 +86,16 @@
                                                 <div class="modal-body p-5">
                                                     <div class="container">
                                                         <div class="row">
-                                                            <div class="col-lg-12 p-1">
-                                                                <a href="{{route('operation.create')}}" class="btn btn-block btn-danger text-uppercase">
-                                                                       Caisse principale USD
-                                                                </a>
-                                                            </div>
-                                                            <div class="col-lg-12 p-1">
-                                                                <a href="{{route('operation.create')}}" class="btn btn-block btn-danger text-uppercase">
-                                                                       Caisse Principale EUR
-                                                                </a>
-                                                            </div>
-                                                            <div class="col-lg-12 p-1">
-                                                                <a href="{{route('operation.create')}}" class="btn btn-block btn-danger text-uppercase">
-                                                                       Caisse principale FCFA
-                                                                </a>
-                                                            </div>
-                                                            <div class="col-lg-12 p-1">
-                                                                <a href="{{route('operation.create')}}" class="btn btn-block btn-danger text-uppercase">
-                                                                       Caisse principale FC
-                                                                </a>
-                                                            </div>
-                                                           
+
+                                                          @foreach ($caisses as $item)
+                                                              <div class="col-lg-12 p-1">
+                                                                  <a href="{{route('operation.create', ['id' => $item->caisse])}}/" class="btn btn-block btn-danger text-uppercase">
+                                                                       Caisse {{$item->caisse}}
+                                                                  </a>
+                                                              </div>
+                                                          @endforeach
+
+
                                                         </div>
                                                     </div>
                                                 </div>

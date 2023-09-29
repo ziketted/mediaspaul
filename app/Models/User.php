@@ -59,4 +59,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(\App\Models\Centre::class);
     }
+
+    public function caisseUser()
+    {
+        return $this->hasMany(\App\Models\Caisse::class);
+    }
 }

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Soccermidable</title>
+    <title>Mediaspaul</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta content="Admin Dashboard" name="description" />
     <meta content="ThemeDesign" name="author" />
@@ -12,27 +12,27 @@
     <link rel="shortcut icon" href="https://upload.wikimedia.org/wikipedia/commons/f/f8/Logo_M%C3%A9diaspaul.png">
 
     <!--Morris Chart CSS -->
-    <link rel="stylesheet" href="assets/plugins/morris/morris.css">
-    <link href="assets/plugins/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
-    <link href="assets/plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    <link href="assets/plugins/datatables/fixedHeader.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    <link href="assets/plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    <link href="assets/plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    <link href="assets/plugins/datatables/scroller.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="assets/css/icons.css" rel="stylesheet" type="text/css">
-    <link href="assets/css/style.css" rel="stylesheet" type="text/css">
-    <link href="assets/plugins/timepicker/bootstrap-timepicker.min.css" rel="stylesheet">
-    <link href="assets/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css" rel="stylesheet">
-    <link href="assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
-    <link href="assets/plugins/bootstrap-touchspin/css/jquery.bootstrap-touchspin.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('assets/plugins/morris/morris.css') }}">
+    <link href="{{asset('assets/plugins/datatables/jquery.dataTables.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('assets/plugins/datatables/buttons.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('assets/plugins/datatables/fixedHeader.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('assets/plugins/datatables/responsive.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('assets/plugins/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('assets/plugins/datatables/scroller.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{asset('assets/css/icons.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{asset('assets/css/style.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{asset('assets/plugins/timepicker/bootstrap-timepicker.min.css') }}" rel="stylesheet">
+    <link href="{{asset('assets/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css') }}" rel="stylesheet">
+    <link href="{{asset('assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css') }}" rel="stylesheet">
+    <link href="{{asset('assets/plugins/bootstrap-touchspin/css/jquery.bootstrap-touchspin.min.css') }}" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-      <!-- Bootstrap CSS v5.2.1 -->
+    <!-- Bootstrap CSS v5.2.1 -->
 
 </head>
 
 <body>
-   
+
     <div class="header-bg">
         <!-- Navigation Bar-->
         <header id="topnav">
@@ -95,7 +95,7 @@
                             <li class="dropdown">
                                 <a href="" class="dropdown-toggle profile waves-effect waves-light"
                                     data-toggle="dropdown" aria-expanded="true">
-                                    <img src="assets/images/users/avatar-1.jpg" alt="user-img" class="rounded-circle">
+                                    <img src="{{ asset('assets/images/users/avatar-1.jpg') }}" alt="user-img" class="rounded-circle">
                                     <span class="profile-username">
                                         {{Auth::user()->email}} <span class="mdi mdi-chevron-down font-15"></span>
                                     </span>
@@ -163,7 +163,7 @@
                             </li>
 
                             <li class="has-submenu">
-                                <a href="{{route('operation.create')}}"><i class="ti-files"></i> Nouvelle opération </a>
+                                <a href="{{route('operation.create', ['id' => 1])}}"><i class="ti-files"></i> Nouvelle opération </a>
                             </li>
 
                             <li class="has-submenu">
@@ -173,7 +173,7 @@
                                         <ul>
                                             <li><a href="#">Centre D'intérêt</a></li>
                                             <li><a href="#">Financement</a></li>
-                                            <li><a href="#">Secteur</a></li>                                        
+                                            <li><a href="#">Secteur</a></li>
                                         </ul>
                                     </li>
                                     {{-- <li>

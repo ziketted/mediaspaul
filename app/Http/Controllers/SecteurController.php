@@ -14,9 +14,10 @@ class SecteurController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
+        $var=$id;
+        return view('secteurs.index', ['var'=>$var]);
     }
 
     /**
@@ -37,7 +38,7 @@ class SecteurController extends Controller
      */
     public function store(Request $request, Secteur $secteur)
     {
-        //
+
         $secteur->compte = $request->compte;
         $secteur->libelle = $request->libelle;
         $secteur->user_id = auth()->user()->id;

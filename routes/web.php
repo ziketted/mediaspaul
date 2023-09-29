@@ -3,6 +3,8 @@
 use App\Models\Operations;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OperationsController;
+use App\Http\Controllers\SecteurController;
+use App\Models\Secteur;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,12 +26,16 @@ Route::get('/', function () {
     return view('operations.create');
 }); */
 
+
+
+
 Route::get('/dashboard', [OperationsController::class, 'index'])->middleware(['auth'])->name('dashboard');
+Route::get('/test/{id}', [SecteurController::class, 'index'])->middleware(['auth'])->name('seteur');
 
 Route::name('operation.')->group(function () {
     Route::get('/operation/index', [OperationsController::class, 'index'])->middleware(['auth'])->name('index');
     Route::post('/operation/store', [OperationsController::class, 'store'])->middleware(['auth'])->name('store');
-    Route::get('/operation', [OperationsController::class, 'create'])->middleware(['auth'])->name('create');
+    Route::get('/operation/{id}', [OperationsController::class, 'create'])->middleware(['auth'])->name('create');
     Route::get('/operation/show/{operation}', [OperationsController::class, 'show'])->name('show');
     Route::get('/rapport', [OperationsController::class, 'rapport'])->name('rapport');
     Route::delete('/operation/{operation}', [OperationsController::class, 'destroy'])->name('destroy');

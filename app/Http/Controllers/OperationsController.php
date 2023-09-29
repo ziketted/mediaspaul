@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Http\Requests\StoreOperationsRequest;
 use App\Http\Requests\UpdateOperationsRequest;
+use App\Models\Caisse;
 
 class OperationsController extends Controller
 {
@@ -18,6 +19,8 @@ class OperationsController extends Controller
     public function index()
     {
         //
+
+        $caisse_all= Caisse::all();
 
         $operationSortieAll = Operations::whereDate('date', '<>', Carbon::today())->where('type', 'Sortie')->sum('operations.montant');
         $operationEntreeAll = Operations::whereDate('date', '<>', Carbon::today())->where('type', 'Entrée')->sum('operations.montant');
@@ -32,6 +35,7 @@ class OperationsController extends Controller
             'operationSortie' => $operationSortie,
             'operationEntree' => $operationEntree,
             'operationTotalcaisse' => $operationTotalcaisse,
+            'caisses' => $caisse_all,
         ]);
     }
     public function rapport()
@@ -54,16 +58,20 @@ class OperationsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
         //
+
+     $caisse = $id;
+
         $operationSortie = Operations::where('type', 'Sortie')->sum('operations.montant');
         $operationEntree = Operations::where('type', 'Entrée')->sum('operations.montant');
         $operationTotalcaisse = $operationEntree - $operationSortie;
-        return view('operations.create', [
+        return view('operations.create', [  
             'operationSortie' => $operationSortie,
             'operationEntree' => $operationEntree,
             'operationTotalcaisse' => $operationTotalcaisse,
+            'caisse'=>$caisse
         ]);
     }
 
