@@ -17,7 +17,7 @@ class Operations extends Model
         'montant',
         'secteur_id',
         'financement_id',
-        'centre',
+        'centre_id',
         'devise',
         'status',
         'description',
