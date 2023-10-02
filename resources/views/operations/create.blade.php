@@ -19,7 +19,6 @@
                                         <select class="form-control txt-20" name="type" aria-label="Default select example" required>
                                             <option value="Cash" selected>Cash</option>
                                             <option value="Cheque">Chèque</option>
-
                                         </select>
 
                                     </div>
