@@ -166,6 +166,7 @@
                                 <a href="{{route('operation.create', ['id' => 1])}}"><i class="ti-files"></i> Nouvelle opération </a>
                             </li>
 
+     
                             <li class="has-submenu">
                                 <a href="#"><i class="ti-settings"></i> Confirugation <i class="mdi mdi-chevron-down mdi-drop"></i></a>
                                 <ul class="submenu megamenu">
