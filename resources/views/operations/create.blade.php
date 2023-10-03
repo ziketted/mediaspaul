@@ -16,7 +16,7 @@
 
                                     <div>
                                         <code class="text-nowrap" style="width: 12rem; color:black">Selectionner le moyen de paiement</code>
-                                        <select class="form-control txt-20" name="type" aria-label="Default select example" required>
+                                        <select class="form-control txt-20" name="moyen" aria-label="Default select example" required>
                                             <option value="Cash" selected>Cash</option>
                                             <option value="Cheque">Chèque</option>
                                         </select>
@@ -28,7 +28,7 @@
                                         <div class="form-group">
                                             <label>Caisse</label>
                                             <div>
-                                                <select class="form-control" name="caisse" aria-label="Default select example" disabled>
+                                                <select class="form-control" name="devise" aria-label="Default select example" disabled>
                                                     <option value="{{ $caisse }}" selected disabled>Caisse Principale {{ $caisse }}</option>
                                                 </select>
                                             </div>
@@ -69,7 +69,7 @@
                                     <div class="form-group">
                                         <label>Secteur</label>
                                         <div>
-                                            <select class="form-control" name="secteur" aria-label="Default select example">
+                                            <select class="form-control" name="secteur_id" aria-label="Default select example">
                                                 <option value="" selected>Entrée</option>
                                                 <option value="">Sortie</option>
 
@@ -79,7 +79,7 @@
                                     <div class="form-group">
                                         <label>Financement</label>
                                         <div>
-                                            <select class="form-control" name="financement" aria-label="Default select example" required>
+                                            <select class="form-control" name="financement_id" aria-label="Default select example" required>
                                                 <option value="" selected>Fond Propre</option>
                                             </select>
                                         </div>
@@ -87,7 +87,7 @@
                                     <div class="form-group">
                                         <label>Centre d'intérêt</label>
                                         <div>
-                                            <select class="form-control" name="centre" aria-label="Default select example">
+                                            <select class="form-control" name="centre_id" aria-label="Default select example">
                                                 <option value="" selected>Kinshasa</option>
                                             </select>
                                         </div>
