@@ -26,11 +26,11 @@ class CreateBilletCaissesTable extends Migration
         Schema::create('billet_caisses', function (Blueprint $table) {
             $table->id();
             $table->string('beneficiaire');
-            $table->string('devise', 300);
+            $table->string('devise');
             $table->date('date');
-            $table->string('moyen', 300);
-            $table->string('type', 300);
-            $table->integer('montant');
+            $table->string('moyen');
+            $table->string('type');
+            $table->integer('total')->default('0');
             $table->string('piece')->nullable();
             $table->string('num_piece')->nullable();
             $table->unsignedBigInteger('secteur_id');
@@ -39,6 +39,7 @@ class CreateBilletCaissesTable extends Migration
             $table->unsignedBigInteger('user_id');
 
             $table->timestamps();
+
             $table->softDeletes();
 
             $table->foreign('user_id')

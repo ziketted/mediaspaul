@@ -24,6 +24,7 @@ class CreateDetailCaissesTable extends Migration
             $table->string('libelle');
             $table->integer('montant');
             $table->bigInteger('compte_id');
+            $table->unsignedBigInteger('billetcaisse_id');
 
             $table->softDeletes();
             $table->timestamps();

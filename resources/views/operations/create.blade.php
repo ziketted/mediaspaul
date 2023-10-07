@@ -109,10 +109,10 @@
                                         <td class="p-0 bg-white">
                                             <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Compte" name="compte_id[]" required>
                                             <datalist id="datalistOptions">
-                                                <option value="San Francisco">
-                                                <option value="New York">
-                                                <option value="Seattle">
-                                                <option value="Los Angeles">
+                                                <option value="1">
+                                                <option value="2">
+                                                <option value="3">
+                                                <option value="5">
                                             </datalist>
                                         </td>
                                         <td class="p-0 bg-white">

@@ -94,8 +94,6 @@ class OperationsController extends Controller
         $operation->beneficiaire = $request->beneficiaire;
         $operation->user_id = auth()->user()->id;
         $operation->type = $request->type;
-        $operation->status = $request->status;
-        $operation->description = $request->description;
 
 
         $operation->save();

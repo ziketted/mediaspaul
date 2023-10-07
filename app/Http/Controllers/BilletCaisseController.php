@@ -18,7 +18,6 @@ class BilletCaisseController extends Controller
      */
     public function index()
     {
-
     }
 
     /**
@@ -37,27 +36,24 @@ class BilletCaisseController extends Controller
      * @param  \App\Http\Requests\StoreBilletCaisseRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, BilletCaisse $operation, DetailCaisse $detailCaisse )
+    public function store(Request $request, BilletCaisse $operation, DetailCaisse $detailCaisse)
     {
 
-        dd($request);
 
-        $operation->secteur_id= $request->secteur_id;
+        $operation->secteur_id = $request->secteur_id;
         $operation->financement_id = $request->financement_id;
         $operation->centre_id = $request->centre_id;
         $operation->devise = $request->devise;
-        $operation->libelle = $request->libelle;
         $operation->date = $request->date;
-        $operation->montant = $request->montant;
+        $operation->moyen = $request->moyen;
+        $operation->devise = 1;
         $operation->beneficiaire = $request->beneficiaire;
         $operation->user_id = auth()->user()->id;
         $operation->type = $request->type;
-        $operation->status = $request->status;
         $operation->save();
 
-
-
-        $ligne = $request->compte_id;
+        $ligne  = $request->libelle;
+        $detail_caisse = [];
         $total = 0;
         for ($i = 0; $i < count($ligne); $i++) {
             # code...
@@ -65,12 +61,11 @@ class BilletCaisseController extends Controller
                 'compte_id' => $request->compte_id[$i],
                 'libelle' => $request->libelle[$i],
                 'montant' => $request->montant[$i],
-                'billet' => $operation->billet,
-                'date' => $request->date,
+                'billetcaisse_id' => $operation->id,
                 'user_id' => auth()->user()->id
             ];
             DB::table('detail_caisses')->insert($detail_caisse);
-            $total += $request->montant[$i] ;
+            $total += $request->montant[$i];
         }
 
         $operation = BilletCaisse::findOrFail($operation->id);

@@ -14,6 +14,7 @@ class DetailCaisse extends Model
         'libelle',
         'montant',
         'compte_id',
+        'billetcaisse_id'
     ];
     public function user()
     {
