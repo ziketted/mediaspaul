@@ -67,7 +67,7 @@ class OperationsController extends Controller
         $operationSortie = Operations::where('type', 'Sortie')->sum('operations.montant');
         $operationEntree = Operations::where('type', 'Entrée')->sum('operations.montant');
         $operationTotalcaisse = $operationEntree - $operationSortie;
-        return view('operations.create', [  
+        return view('operations.create', [
             'operationSortie' => $operationSortie,
             'operationEntree' => $operationEntree,
             'operationTotalcaisse' => $operationTotalcaisse,
@@ -96,8 +96,10 @@ class OperationsController extends Controller
         $operation->type = $request->type;
         $operation->status = $request->status;
         $operation->description = $request->description;
+
+
         $operation->save();
-        return redirect()->route('dashboard');
+        return redirect()->route('dashboard')->with('status', "Opération réussie avec succès.");
     }
 
     /**

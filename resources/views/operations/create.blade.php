@@ -29,8 +29,8 @@
                                             <label>Caisse</label>
                                             <div>
                                                 <code class="text-nowrap" style="width: 12rem; color:black">{{ $caisse }}</code>
-                                                <select class="form-control" name="devise" aria-label="Default select example" disabled>
-                                                    <option value="{{ $caisse }}" selected disabled>Caisse Principale {{ $caisse }}</option>
+                                                <select class="form-control" name="devise" aria-label="Default select example" >
+                                                    <option value="{{ $caisse }}" selected >Caisse Principale {{ $caisse }}</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -70,9 +70,9 @@
                                     <div class="form-group">
                                         <label>Secteur</label>
                                         <div>
-                                            <select class="form-control" name="secteur_id" aria-label="Default select example">
-                                                <option value="" selected>Entrée</option>
-                                                <option value="">Sortie</option>
+                                            <select class="form-control" name="secteur_id" aria-label="Default select example" required>
+                                                <option value="1" selected>Entrée</option>
+                                                <option value="2">Sortie</option>
 
                                             </select>
                                         </div>
@@ -81,7 +81,7 @@
                                         <label>Financement</label>
                                         <div>
                                             <select class="form-control" name="financement_id" aria-label="Default select example" required>
-                                                <option value="" selected>Fond Propre</option>
+                                                <option value="1" selected>Fond Propre</option>
                                             </select>
                                         </div>
                                     </div>
@@ -89,7 +89,7 @@
                                         <label>Centre d'intérêt</label>
                                         <div>
                                             <select class="form-control" name="centre_id" aria-label="Default select example">
-                                                <option value="" selected>Kinshasa</option>
+                                                <option value="1" selected>Kinshasa</option>
                                             </select>
                                         </div>
                                     </div>

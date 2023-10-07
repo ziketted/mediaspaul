@@ -19,6 +19,7 @@ class Operations extends Model
         'financement_id',
         'centre_id',
         'devise',
+        'moyen',
         'status',
         'description',
     ];
