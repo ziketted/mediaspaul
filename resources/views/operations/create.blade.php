@@ -43,7 +43,7 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-12" style="padding-right: 50px; padding-left:50px;">
-                                   
+
                                     <div class="form-group">
                                         <label>Type de transaction</label>
                                         <div>
@@ -83,8 +83,8 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div> 
-                      
+                            </div>
+
                     </div><!-- card-body -->
                 </div> <!-- card -->
             </div> <!-- col-->
@@ -103,11 +103,11 @@
                                     <th class="text-center w-25">Option</th>
                                 </tr>
                             </thead>
-    
+
                             <tbody>
                                 <tr>
                                     <td class="p-0 bg-white">
-                                        <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Compte" name="compte[]">
+                                        <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Compte" name="compte_id[]">
                                         <datalist id="datalistOptions">
                                           <option value="San Francisco">
                                           <option value="New York">
@@ -122,7 +122,7 @@
                                     </td>
                                     <td class="w-25 text-center p-0 btn-info">
                                         <button class="btn btn-info mx-auto w-100"
-                                            onclick="if (!confirm('Voulez-vous vraiment supprimer cet élément ?')) { return false }"><i class="mdi mdi-plus"></i>
+                                        onclick="insRow()"><i class="mdi mdi-plus"></i>
                                         </button>
                                     </td>
                                 </tr>

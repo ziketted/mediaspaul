@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCaissesTable extends Migration
+class CreateDetailCaissesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,18 @@ class CreateCaissesTable extends Migration
      */
     public function up()
     {
-        Schema::create('caisses', function (Blueprint $table) {
+/*
+        'user_id',
+        'libelle',
+        'compte_id',
+        'montant' */
+        Schema::create('detail_caisses', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('caisse', 300);
-            $table->string('description')->nullable();
+            $table->string('libelle');
+            $table->integer('montant');
+            $table->bigInteger('compte_id');
+
             $table->softDeletes();
             $table->timestamps();
 
@@ -36,6 +43,6 @@ class CreateCaissesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('caisses');
+        Schema::dropIfExists('detail_caisses');
     }
 }

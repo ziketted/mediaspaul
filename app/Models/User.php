@@ -64,4 +64,19 @@ class User extends Authenticatable
     {
         return $this->hasMany(\App\Models\Caisse::class);
     }
+
+    public function compteUser()
+    {
+        return $this->hasMany(\App\Models\Compte::class);
+    }
+
+
+    public function billetcaisseUser()
+    {
+        return $this->hasMany(\App\Models\BilletCaisse::class);
+    }
+    public function detailcaisseUser()
+    {
+        return $this->hasMany(\App\Models\DetailCaisse::class);
+    }
 }
