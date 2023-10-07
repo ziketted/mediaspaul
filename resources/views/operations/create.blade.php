@@ -28,7 +28,7 @@
                                         <label>Béneficiare</label>
                                         <div>
                                             <div class="input-group">
-                                                <input type="text" name="beneficiare" class="form-control" placeholder="Noms du Béneficiaire" required>
+                                                <input type="text" name="beneficiaire" class="form-control" placeholder="Noms du Béneficiaire" required>
                                             </div><!-- input-group -->
                                         </div>
                                     </div>
