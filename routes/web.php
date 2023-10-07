@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BilletCaisseController;
 use App\Models\Operations;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OperationsController;
@@ -46,7 +47,7 @@ Route::get('/test/{id}', [SecteurController::class, 'index'])->middleware(['auth
 
 Route::name('operation.')->group(function () {
     Route::get('/operation/index', [OperationsController::class, 'index'])->middleware(['auth'])->name('index');
-    Route::post('/operation/store', [OperationsController::class, 'store'])->middleware(['auth'])->name('store');
+    Route::post('/operation/store', [BilletCaisseController::class, 'store'])->middleware(['auth'])->name('store');
     Route::get('/operation/{id}', [OperationsController::class, 'create'])->middleware(['auth'])->name('create');
     Route::get('/operation/show/{operation}', [OperationsController::class, 'show'])->name('show');
     Route::get('/rapport', [OperationsController::class, 'rapport'])->name('rapport');
@@ -56,7 +57,7 @@ Route::name('operation.')->group(function () {
 
 /* Route::name('secteur.')->group(function () {
     Route::get('/secteur/index', [SecteurController::class, 'index'])->middleware(['auth'])->name('create');
-  
+
 }); */
 
 

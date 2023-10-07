@@ -102,7 +102,7 @@
                                         <th class="text-center w-25">Option</th>
                                     </tr>
                                 </thead>
-                        
+
                                 <tbody>
                                     <!-- Ligne initiale -->
                                     <tr>

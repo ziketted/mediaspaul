@@ -81,7 +81,7 @@ class OperationsController extends Controller
      * @param  \App\Http\Requests\StoreOperationsRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Operations $operation)
+    public function store(Request $request, Operations $operation )
     {
 
         $operation->secteur_id= $request->secteur_id;
