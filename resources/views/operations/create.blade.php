@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <div class="row m-5 p-3 ">
             <!-- Basic example -->
-            <div class="col-lg-12 mt-5">
+            <div class="col-lg-10 mt-5">
                 <div class="card">
                     <div class="card-body">
                         <h4 class="m-t-0 m-b-30">Opération de caisse.</h4>
@@ -11,7 +11,7 @@
                         <form action="{{route('operation.store')}}" method="POST">
                             @csrf
                             <div class="row">
-                                <div class="col-lg-6" >
+                                <div class="col-lg-6" style="padding-right: 50px; padding-left:50px;">
                                     <label>Moyen de paiement</label>
 
                                     <div>
@@ -23,11 +23,12 @@
 
                                     </div>
                                 </div>
-                                <div class="col-lg-6" style="padding-right: 50px; padding-left:50px; ">
+                                <div class="col-lg-6" style="padding-right: 50px; padding-left:50px;">
                                     <div class="form-group">
                                         <div class="form-group">
                                             <label>Caisse</label>
                                             <div>
+                                                <code class="text-nowrap" style="width: 12rem; color:black">{{ $caisse }}</code>
                                                 <select class="form-control" name="devise" aria-label="Default select example" disabled>
                                                     <option value="{{ $caisse }}" selected disabled>Caisse Principale {{ $caisse }}</option>
                                                 </select>
@@ -119,11 +120,20 @@
                     </div><!-- card-body -->
                 </div> <!-- card -->
             </div> <!-- col-->
-
+            <div class="col-lg-2 mt-5">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="m-t-0 ">Opérations en attente de validation.</h4>
+                        <center>
+                            <h1>5</h1>
+                        </center>
+                        <a href="/waiting" class="btn btn-primary w-100">Voir</a>
+                    </div><!-- card-body -->
+                </div> <!-- card -->
+            </div>
         </div>
     </div><!-- End row -->
-
-
 </div>
 <!-- end wrapper -->
-@include('header.footer')
+{{-- @include('header.footer')
+ --}}

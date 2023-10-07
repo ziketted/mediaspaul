@@ -21,6 +21,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/waiting', function () {
+    return view('operations.waiting');
+});
+
+Route::get('/secteur', function () {
+    return view('secteurs.create');
+});
+
+Route::get('/financement', function () {
+    return view('financements.create');
+});
+
 
 /* Route::get('/operation', function () {
     return view('operations.create');
@@ -42,7 +54,10 @@ Route::name('operation.')->group(function () {
 });
 
 
-
+/* Route::name('secteur.')->group(function () {
+    Route::get('/secteur/index', [SecteurController::class, 'index'])->middleware(['auth'])->name('create');
+  
+}); */
 
 
 

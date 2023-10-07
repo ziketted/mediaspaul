@@ -14,10 +14,10 @@ class SecteurController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index()
     {
-        $var=$id;
-        return view('secteurs.index', ['var'=>$var]);
+       
+        return view('secteurs.index');
     }
 
     /**
