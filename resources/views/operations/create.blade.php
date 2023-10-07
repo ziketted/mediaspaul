@@ -9,7 +9,7 @@
             <div class="col-lg-6 mt-4">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="m-t-0 m-b-2">Opération de caisse  <code class="text-nowrap" style="width: 12rem; color:black">{{ $caisse }}</code>.</h4>
+                        <h4 class="m-t-0 m-b-2">Opération de caisse en {{ $caisse }}.</h4>
 
                             <div class="row">
                                 <div class="col-lg-12" style="padding-right: 50px; padding-left:50px;">
