@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\BilletCaisse;
 use App\Http\Requests\StoreBilletCaisseRequest;
 use App\Http\Requests\UpdateBilletCaisseRequest;
+use App\Models\DetailCaisse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BilletCaisseController extends Controller
 {
@@ -15,7 +18,7 @@ class BilletCaisseController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -34,9 +37,46 @@ class BilletCaisseController extends Controller
      * @param  \App\Http\Requests\StoreBilletCaisseRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreBilletCaisseRequest $request)
+    public function store(Request $request, BilletCaisse $operation, DetailCaisse $detailCaisse )
     {
-        //
+
+        dd($request);
+
+        $operation->secteur_id= $request->secteur_id;
+        $operation->financement_id = $request->financement_id;
+        $operation->centre_id = $request->centre_id;
+        $operation->devise = $request->devise;
+        $operation->libelle = $request->libelle;
+        $operation->date = $request->date;
+        $operation->montant = $request->montant;
+        $operation->beneficiaire = $request->beneficiaire;
+        $operation->user_id = auth()->user()->id;
+        $operation->type = $request->type;
+        $operation->status = $request->status;
+        $operation->save();
+
+
+
+        $ligne = $request->compte_id;
+        $total = 0;
+        for ($i = 0; $i < count($ligne); $i++) {
+            # code...
+            $detail_caisse = [
+                'compte_id' => $request->compte_id[$i],
+                'libelle' => $request->libelle[$i],
+                'montant' => $request->montant[$i],
+                'billet' => $operation->billet,
+                'date' => $request->date,
+                'user_id' => auth()->user()->id
+            ];
+            DB::table('detail_caisses')->insert($detail_caisse);
+            $total += $request->montant[$i] ;
+        }
+
+        $operation = BilletCaisse::findOrFail($operation->id);
+        $operation->total =  $total;
+        $operation->save();
+        return redirect()->route('dashboard')->with('status', "Opération réussie avec succès.");
     }
 
     /**
