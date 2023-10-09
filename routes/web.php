@@ -22,8 +22,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/waiting', function () {
-    return view('operations.waiting');
+Route::get('/centre', function () {
+    return view('centres.create');
+});
+
+Route::get('/compte', function () {
+    return view('comptes.create');
 });
 
 Route::get('/secteur', function () {

@@ -163,7 +163,17 @@
                             </li>
 
                             <li class="has-submenu">
-                                <a href="{{route('operation.create', ['id' => 1])}}"><i class="ti-files"></i> Nouvelle opération </a>
+                                <a><i class="ti-files"></i> Nouvelle opération </a>
+                                <ul class="submenu megamenu">
+                                    <li>
+                                        <ul>
+                                            <li><a href="/operation/CDF/">CDF</a></li>
+                                            <li><a href="/operation/CFA/">CFA</a></li>
+                                            <li><a href="/operation/EURO/">EURO</a></li>
+                                            <li><a href="/operation/USD/">USD</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
                             </li>
 
      
@@ -172,7 +182,8 @@
                                 <ul class="submenu megamenu">
                                     <li>
                                         <ul>
-                                            <li><a href="">Centre D'intérêt</a></li>
+                                            <li><a href="/centre">Centre D'intérêt</a></li>
+                                            <li><a href="/compte">Compte</a></li>
                                             <li><a href="/financement">Financement</a></li>
                                             <li><a href="/secteur">Secteur</a></li>
                                         </ul>

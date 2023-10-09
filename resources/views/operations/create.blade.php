@@ -51,8 +51,7 @@
 
                                     </div>
                                 </div>
-                                <div class="col-lg-12" style="padding-right: 50px; padding-left:50px;">
-                                   
+                                <div class="col-lg-12" style="padding-right: 50px; padding-left:50px;">                            
                                     <div class="form-group">
                                         <label>Secteur</label>
                                         <div>

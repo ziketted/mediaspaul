@@ -9,14 +9,23 @@
             <div class="col-lg-4 mt-4">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="m-t-0 m-b-2">Ajouter un Centre</h4>
+                        <h4 class="m-t-0 m-b-2">Ajouter un Compte</h4>
                         <div class="row">
                             <div class="col-lg-12 mt-3 pb-3" style="padding-right: 50px; padding-left:50px;">
                                 <div class="form-group">
-                                    <label>Centre</label>
+                                    <label>Numero du Compte</label>
                                     <div>
                                         <div class="input-group">
-                                            <input type="text" name="nom" class="form-control" placeholder="Nom du centre"
+                                            <input type="number" name="numero" class="form-control" placeholder="numero du compte"
+                                                id="numero" required>
+                                        </div><!-- input-group -->
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Nom du Compte</label>
+                                    <div>
+                                        <div class="input-group">
+                                            <input type="text" name="nom" class="form-control" placeholder="Nom du Compte"
                                                 id="nom" required>
                                         </div><!-- input-group -->
                                     </div>
@@ -30,7 +39,7 @@
             <div class="col-lg-8 mt-4">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="m-t-0 m-b-2">Liste des Centres</h4>
+                        <h4 class="m-t-0 m-b-2">Liste des comptes</h4>
 
                         <div class="row">
                             <div class="col-lg-12 mt-3" style="padding-right: 50px; padding-left:50px;">
@@ -40,12 +49,16 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Centre</th>
-                                <th class="text-center">option</th>
+                                <th>Numéro du Compte</th>
+                                <th>Nom du Compte</th>
+                                <th class="text-center">options</th>
                             </tr>
                         </thead>
+
+
                         <tbody>
                             <tr>
+                                <td></td>
                                 <td></td>
                                 <td></td>
                                 <td class="w-25 text-center">
