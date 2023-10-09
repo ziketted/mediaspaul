@@ -13,7 +13,16 @@
 
                             <div class="row">
                                 <div class="col-lg-12" style="padding-right: 50px; padding-left:50px;">
+                                    <div class="form-group">
+                                        <label>Type de transaction</label>
+                                        <div>
+                                            <select class="form-control" name="type" aria-label="Default select example" required>
+                                                <option value="Entrée" selected>Entrée</option>
+                                                <option value="Sortie">Sortie</option>
 
+                                            </select>
+                                        </div>
+                                    </div>
                                     <div class="form-group">
                                         <label>Date opération</label>
                                         <div>
@@ -43,18 +52,7 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-12" style="padding-right: 50px; padding-left:50px;">
-
-                                    <div class="form-group">
-                                        <label>Type de transaction</label>
-                                        <div>
-                                            <select class="form-control" name="type" aria-label="Default select example" required>
-                                                <option value="Entrée" selected>Entrée</option>
-                                                <option value="Sortie">Sortie</option>
-
-                                            </select>
-                                        </div>
-                                    </div>
-
+                                   
                                     <div class="form-group">
                                         <label>Secteur</label>
                                         <div>
