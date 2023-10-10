@@ -176,27 +176,18 @@
                                 </ul>
                             </li>
 
-     
+
                             <li class="has-submenu">
                                 <a href="#"><i class="ti-settings"></i> Confirugation <i class="mdi mdi-chevron-down mdi-drop"></i></a>
                                 <ul class="submenu megamenu">
                                     <li>
                                         <ul>
-                                            <li><a href="/centre">Centre D'intérêt</a></li>
-                                            <li><a href="/compte">Compte</a></li>
-                                            <li><a href="/financement">Financement</a></li>
-                                            <li><a href="/secteur">Secteur</a></li>
+                                            <li><a href="{{ route('centre.index') }}">Centre D'intérêt</a></li>
+                                            <li><a href="{{ route('compte.index') }}">Compte</a></li>
+                                            <li><a href="{{ route('financement.index') }}">Financement</a></li>
+                                            <li><a href="{{ route('secteur.index') }}">Secteur</a></li>
                                         </ul>
                                     </li>
-                                    {{-- <li>
-                                        <ul>
-                                            <li><a href="ui-progressbars.html">Progress Bars</a></li>
-                                            <li><a href="ui-alerts.html">Alerts</a></li>
-                                            <li><a href="ui-sweet-alert.html">Sweet-Alert</a></li>
-                                            <li><a href="ui-grid.html">Grid</a></li>
-                                            <li><a href="typography.html">Typography</a></li>
-                                        </ul>
-                                    </li> --}}
                                 </ul>
                             </li>
 

@@ -17,6 +17,9 @@ class CentreController extends Controller
     public function index()
     {
         //
+
+        $centres= Centre::all();
+        return view('centres.index', ["centres"=>$centres]);
     }
 
     /**
@@ -39,9 +42,8 @@ class CentreController extends Controller
     {
         $centre->libelle = $request->libelle;
         $centre->user_id = auth()->user()->id;
-        $centre->description = $request->description;
         $centre->save();
-        return redirect()->route('dashboard');
+        return redirect()->route('centre.index');
     }
 
     /**

@@ -11,7 +11,8 @@ class Compte extends Model
     use HasFactory, SoftDeletes;
     protected $fillable = [
         'user_id',
-        'libelle',
+        'numero',
+        'compte'
     ];
     public function user()
     {

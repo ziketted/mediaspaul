@@ -8,6 +8,9 @@ use Illuminate\Support\Carbon;
 use App\Http\Requests\StoreOperationsRequest;
 use App\Http\Requests\UpdateOperationsRequest;
 use App\Models\Caisse;
+use App\Models\Compte;
+use App\Models\Financement;
+use App\Models\Secteur;
 
 class OperationsController extends Controller
 {
@@ -64,6 +67,11 @@ class OperationsController extends Controller
 
      $caisse = $id;
 
+     $secteurs=Secteur::all();
+     $financements=Financement::all();
+     $comptes=Compte::all();
+
+
         $operationSortie = Operations::where('type', 'Sortie')->sum('operations.montant');
         $operationEntree = Operations::where('type', 'Entrée')->sum('operations.montant');
         $operationTotalcaisse = $operationEntree - $operationSortie;
@@ -71,7 +79,10 @@ class OperationsController extends Controller
             'operationSortie' => $operationSortie,
             'operationEntree' => $operationEntree,
             'operationTotalcaisse' => $operationTotalcaisse,
-            'caisse'=>$caisse
+            'caisse'=>$caisse,
+            'secteurs'=>$secteurs,
+            'financements'=>$financements,
+            'comptes'=>$comptes
         ]);
     }
 

@@ -17,6 +17,9 @@ class FinancementController extends Controller
     public function index()
     {
         //
+
+        $financements= Financement::all();
+        return view('financements.create', ["financements"=>$financements]);
     }
 
     /**
@@ -41,7 +44,7 @@ class FinancementController extends Controller
         $financement->user_id = auth()->user()->id;
         $financement->description = $request->description;
         $financement->save();
-        return redirect()->route('dashboard');
+        return redirect()->route('financenment.index');
     }
 
     /**

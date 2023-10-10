@@ -16,9 +16,7 @@ class CreateSecteursTable extends Migration
         Schema::create('secteurs', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->date('libelle', 300);
-            $table->date('compte', 300);
-            $table->string('description', 300)->nullable();
+            $table->string('libelle', 300);
 
             $table->timestamps();
             $table->softDeletes();

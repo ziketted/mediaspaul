@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\BilletCaisseController;
+use App\Http\Controllers\CentreController;
+use App\Http\Controllers\CompteController;
+use App\Http\Controllers\FinancementController;
 use App\Models\Operations;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OperationsController;
@@ -58,6 +61,39 @@ Route::name('operation.')->group(function () {
     Route::delete('/operation/{operation}', [OperationsController::class, 'destroy'])->name('destroy');
 });
 
+
+Route::name('compte.')->group(function () {
+    Route::get('/compte/index', [CompteController::class, 'index'])->middleware(['auth'])->name('index');
+    Route::post('/compte/store', [CompteController::class, 'store'])->middleware(['auth'])->name('store');
+    Route::get('/compte/show/{compte}', [CompteController::class, 'show'])->name('show');
+
+    Route::delete('/compte/{compte}', [CompteController::class, 'destroy'])->name('destroy');
+});
+
+
+Route::name('centre.')->group(function () {
+    Route::get('/centre/index', [CentreController::class, 'index'])->middleware(['auth'])->name('index');
+    Route::post('/centre/store', [CentreController::class, 'store'])->middleware(['auth'])->name('store');
+    Route::get('/centre/show/{centre}', [CentreController::class, 'show'])->name('show');
+
+    Route::delete('/centre/{centre}', [CentreController::class, 'destroy'])->name('destroy');
+});
+
+
+Route::name('financement.')->group(function () {
+    Route::get('/financement/index', [FinancementController::class, 'index'])->middleware(['auth'])->name('index');
+    Route::post('/financement/store', [FinancementController::class, 'store'])->middleware(['auth'])->name('store');
+    Route::get('/financement/show/{financement}', [FinancementController::class, 'show'])->name('show');
+
+    Route::delete('/financement/{financement}', [FinancementController::class, 'destroy'])->name('destroy');
+});
+Route::name('secteur.')->group(function () {
+    Route::get('/secteur/index', [SecteurController::class, 'index'])->middleware(['auth'])->name('index');
+    Route::post('/secteur/store', [SecteurController::class, 'store'])->middleware(['auth'])->name('store');
+    Route::get('/secteur/show/{secteur}', [SecteurController::class, 'show'])->name('show');
+
+    Route::delete('/secteur/{secteur}', [SecteurController::class, 'destroy'])->name('destroy');
+});
 
 /* Route::name('secteur.')->group(function () {
     Route::get('/secteur/index', [SecteurController::class, 'index'])->middleware(['auth'])->name('create');

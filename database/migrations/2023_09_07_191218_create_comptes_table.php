@@ -15,8 +15,17 @@ class CreateComptesTable extends Migration
     {
         Schema::create('comptes', function (Blueprint $table) {
             $table->id();
-            $table->string('libelle');
+            $table->string('numero');
+            $table->string('compte');
+            $table->unsignedBigInteger('user_id');
+
             $table->timestamps();
+            $table->softDeletes();
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('restrict')
+                ->unUpdate('restrict');
         });
     }
 

@@ -16,7 +16,7 @@ class CreateFinancementsTable extends Migration
         Schema::create('financements', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->date('libelle', 300);
+            $table->string('libelle', 300);
             $table->string('description', 300)->nullable();
 
             $table->timestamps();

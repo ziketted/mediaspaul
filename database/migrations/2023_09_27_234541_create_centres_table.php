@@ -16,8 +16,7 @@ class CreateCentresTable extends Migration
         Schema::create('centres', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->date('libelle', 300);
-            $table->string('description', 300)->nullable();
+            $table->string('libelle', 300);
 
             $table->timestamps();
             $table->softDeletes();

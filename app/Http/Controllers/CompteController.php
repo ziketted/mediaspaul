@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Compte;
 use App\Http\Requests\StoreCompteRequest;
 use App\Http\Requests\UpdateCompteRequest;
+use Illuminate\Http\Request;
 
 class CompteController extends Controller
 {
@@ -16,6 +17,8 @@ class CompteController extends Controller
     public function index()
     {
         //
+        $comptes=Compte::all();
+        return view('comptes.create', ["comptes"=>$comptes]);
     }
 
     /**
@@ -34,9 +37,15 @@ class CompteController extends Controller
      * @param  \App\Http\Requests\StoreCompteRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCompteRequest $request)
+    public function store(Request $request, Compte $compte)
     {
         //
+        $compte->compte = $request->compte;
+        $compte->numero = $request->numero;
+        $compte->user_id = auth()->user()->id;
+        $compte->save();
+
+        return redirect()->route('compte.index')->with("message", "saved success");
     }
 
     /**
