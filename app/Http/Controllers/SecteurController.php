@@ -16,8 +16,10 @@ class SecteurController extends Controller
      */
     public function index()
     {
-       
-        return view('secteurs.index');
+        $secteurs=Secteur::all();
+
+
+        return view('secteurs.create', ["secteurs"=>$secteurs]);
     }
 
     /**
@@ -39,12 +41,10 @@ class SecteurController extends Controller
     public function store(Request $request, Secteur $secteur)
     {
 
-        $secteur->compte = $request->compte;
         $secteur->libelle = $request->libelle;
         $secteur->user_id = auth()->user()->id;
-        $secteur->description = $request->description;
         $secteur->save();
-        return redirect()->route('dashboard');
+        return redirect()->route('secteur.index');
     }
 
     /**
@@ -88,10 +88,10 @@ class SecteurController extends Controller
      * @param  \App\Models\Secteur  $secteur
      * @return \Illuminate\Http\Response
      */
-    public function destroy($secteur)
+    public function destroy()
     {
-        $secteurs = Secteur::find($secteur);
+      /*   $secteurs = Secteur::find($secteur);
         $secteurs->delete();
-        return back();
+        return back(); */
     }
 }

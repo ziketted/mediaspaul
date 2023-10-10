@@ -15,7 +15,6 @@ class Centre extends Model
     protected $fillable = [
         'user_id',
         'libelle',
-        'description',
     ];
 
     public function user()
