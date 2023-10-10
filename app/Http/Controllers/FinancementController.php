@@ -40,11 +40,13 @@ class FinancementController extends Controller
      */
     public function store(Request $request, Financement $financement)
     {
+
         $financement->libelle = $request->libelle;
         $financement->user_id = auth()->user()->id;
         $financement->description = $request->description;
         $financement->save();
-        return redirect()->route('financenment.index');
+        return redirect()->route('financement.index');
+        
     }
 
     /**
@@ -89,8 +91,11 @@ class FinancementController extends Controller
      * @param  \App\Models\Financement  $financement
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Financement $financement)
+    public function destroy( $financement)
     {
         //
+        $financements = Financement::find($financement);
+        $financements->delete();
+        return back();
     }
 }

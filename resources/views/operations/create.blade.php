@@ -51,13 +51,15 @@
 
                                     </div>
                                 </div>
-                                <div class="col-lg-12" style="padding-right: 50px; padding-left:50px;">                            
+                                <div class="col-lg-12" style="padding-right: 50px; padding-left:50px;">
                                     <div class="form-group">
                                         <label>Secteur</label>
                                         <div>
                                             <select class="form-control" name="secteur_id" aria-label="Default select example" required>
-                                                <option value="1" selected>Entrée</option>
-                                                <option value="2">Sortie</option>
+                                               @foreach ($secteurs as $item)
+                                                 <option value="{{ $item->id }}" selected>{{ $item->libelle }}</option>
+
+                                               @endforeach
 
                                             </select>
                                         </div>
@@ -67,7 +69,9 @@
                                         <label>Financement</label>
                                         <div>
                                             <select class="form-control" name="financement_id" aria-label="Default select example" required>
-                                                <option value="1" selected>Fond Propre</option>
+                                              @foreach ($financements as $item)
+                                                  <option value="{{ $item->id }}" selected>{{ $item->libelle }}</option>
+                                              @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -75,7 +79,9 @@
                                         <label>Centre d'intérêt</label>
                                         <div>
                                             <select class="form-control" name="centre_id" aria-label="Default select example">
-                                                <option value="1" selected>Kinshasa</option>
+                                               @foreach ($centres as $item)
+                                                 <option value="{{ $item->id }}" selected>{{ $item->libelle }}</option>
+                                               @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -104,13 +110,13 @@
                                     <!-- Ligne initiale -->
                                     <tr>
                                         <td class="p-0 bg-white">
-                                            <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Compte" name="compte_id[]" required>
-                                            <datalist id="datalistOptions">
-                                                <option value="1">
-                                                <option value="2">
-                                                <option value="3">
-                                                <option value="5">
-                                            </datalist>
+
+                                                <select name="compte_id[]" class="form-control" id="">
+                                                @foreach ($comptes as $item)
+                                                    <option value="{{ $item->id }}">{{ $item->numero }} - {{ $item->compte }}</option>
+
+                                                @endforeach
+                                            </select>
                                         </td>
                                         <td class="p-0 bg-white">
                                             <input type="text" name="libelle[]" placeholder="Libelle" class="form-control w-100 h-100 border-0" required>
@@ -126,7 +132,7 @@
                             </table>
                             <h3 class="fw-bold"><span id="totalSum"></span> {{$caisse}}</h3>
                         </div>
-                       
+
                         {{-- <button class="btn btn-success w-100 text-uppercase" type="submit">Valider l'opération</button> --}}
                     </div><!-- card-body -->
                 </div> <!-- card -->
@@ -149,13 +155,13 @@
                                 <label>Numéro</label>
                                 <div>
                                     <div class="input-group">
-                                        <input type="text" name="numero_piece" class="form-control" placeholder="Numéro de la pièce justificative" id="numero_piece" disabled>
+                                        <input type="text" name="num_piece" class="form-control" placeholder="Numéro de la pièce justificative" id="numero_piece" disabled>
                                     </div><!-- input-group -->
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label>Numéro</label>
+                                <label>Description</label>
                                 <div>
                                     <div class="input-group">
                                         <input type="text" name="description" class="form-control" placeholder="Description" id="description" disabled>
@@ -164,7 +170,7 @@
                             </div>
                             <button class="btn btn-success w-100 text-uppercase" type="submit">Valider l'opération</button>
                         </div>
-                      
+
                     </div><!-- card-body -->
                 </div> <!-- card -->
             </div>
@@ -193,7 +199,7 @@ function handlePieceSelection(select) {
 
  $(document).ready(function () {
 
-   
+
 
     function updateTotalSum() {
         var total = 0;
@@ -240,7 +246,7 @@ function handlePieceSelection(select) {
         cell3.className = "p-0 bg-white";
         cell4.className = "w-25 text-center p-0";
 
-        cell1.innerHTML = '<input class="form-control" list="datalistOptions" placeholder="Compte" name="compte_id[]" required><datalist id="datalistOptions"><option value="San Francisco"><option value="New York"><option value="Seattle"><option value="Los Angeles"></datalist>';
+        cell1.innerHTML = '<select name="compte_id[]" class="form-control" id="">@foreach ($comptes as $item) <option value="{{ $item->id }}">{{ $item->numero }} - {{ $item->compte }} </option> @endforeach </select>';
         cell2.innerHTML = '<input type="text" name="libelle[]" placeholder="Libelle" class="form-control w-100 h-100 border-0" required>';
         cell3.innerHTML = '<input type="number" name="montant[]" placeholder="En {{strtolower($caisse)}}" class="form-control w-100 h-100 border-0" required>';
         cell4.innerHTML = '<a class="btn btn-danger mx-auto w-100 deleteRowBtn"><i class="mdi mdi-minus"></i></a>';

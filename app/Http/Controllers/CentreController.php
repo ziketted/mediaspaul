@@ -19,7 +19,7 @@ class CentreController extends Controller
         //
 
         $centres= Centre::all();
-        return view('centres.index', ["centres"=>$centres]);
+        return view('centres.create', ["centres"=>$centres]);
     }
 
     /**

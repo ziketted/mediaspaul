@@ -7,9 +7,10 @@
             <!-- Basic example -->
 
             <div class="col-lg-4 mt-4">
-                <form action="{{route('centre.store')}}" method="POST">
-                    @csrf
+
                     <div class="card">
+                        <form action="{{route('centre.store')}}" method="POST">
+                            @csrf
                         <div class="card-body">
                             <h4 class="m-t-0 m-b-2">Ajouter un Centre</h4>
                             <div class="row">
@@ -27,9 +28,10 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+
 
                 </form>
+             </div>
             </div>
 
             <div class="col-lg-8 mt-4">
@@ -51,20 +53,22 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td class="w-25 text-center">
-                                                <form action="" method="POST" style="display:inline;">
-                                                    @method('DELETE')
-                                                    @csrf
-                                                    <button class="btn btn-danger"
-                                                        onclick="if (!confirm('Voulez-vous vraiment supprimer cet élément ?')) { return false }">Supprimer
-                                                    </button>
-                                                </form>
-                                            </td>
+                                       @foreach ($centres as $item)
+                                         <tr>
+                                             <td>{{ $item->id }}</td>
+                                             <td>{{ $item->libelle }}</td>
+                                             <td class="w-25 text-center">
+                                                 <form action="{{ route('centre.destroy', $item->id) }}" method="POST" style="display:inline;">
+                                                     @method('DELETE')
+                                                     @csrf
+                                                     <button class="btn btn-danger"
+                                                         onclick="if (!confirm('Voulez-vous vraiment supprimer cet élément ?')) { return false }">Supprimer
+                                                     </button>
+                                                 </form>
+                                             </td>
 
-                                        </tr>
+                                         </tr>
+                                       @endforeach
                                     </tbody>
                                 </table>
                             </div>
