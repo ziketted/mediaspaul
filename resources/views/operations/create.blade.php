@@ -89,7 +89,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="m-t-0 ">Détails de l'opération.</h4>
-                        <div class="ps-5 pe-5" style="">
+                        <div class="ps-5 pe-5" style="padding-left: 50px; padding-right: 50px;">
                             <table class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; width: 100%;" id="myTable">
                                 <thead>
                                     <tr>
@@ -124,18 +124,77 @@
                                     </tr>
                                 </tbody>
                             </table>
+                            <h3 class="fw-bold"><span id="totalSum"></span> {{$caisse}}</h3>
                         </div>
-                        <h3 class="fw-bold"><span id="totalSum"></span> {{$caisse}}</h3>
-                        <button class="btn btn-success w-100 text-uppercase" type="submit">Valider l'opération</button>
+                       
+                        {{-- <button class="btn btn-success w-100 text-uppercase" type="submit">Valider l'opération</button> --}}
+                    </div><!-- card-body -->
+                </div> <!-- card -->
+
+                <div class="card mt-3 pb-3">
+                    <div class="card-body">
+                        <h4 class="m-t-0 ">Pièces Justificatives</h4>
+                        <div class="ps-5 pe-5" style="padding-left: 50px; padding-right: 50px;">
+                            <div class="form-group">
+                                <label class="pe-5">Pièce Justificative</label>
+                                <select class="form-control txt-20" name="piece" aria-label="Default select example" onchange="handlePieceSelection(this)">
+                                    <option value="" selected>Aucune Pièce</option>
+                                    <option value="Proforma">Proforma</option>
+                                    <option value="Facture">Facture</option>
+                                    <option value="Ord. Paiement">Ordre de Paiement</option>
+                                    <option value="Cheque">Chèque</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Numéro</label>
+                                <div>
+                                    <div class="input-group">
+                                        <input type="text" name="numero_piece" class="form-control" placeholder="Numéro de la pièce justificative" id="numero_piece" disabled>
+                                    </div><!-- input-group -->
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Numéro</label>
+                                <div>
+                                    <div class="input-group">
+                                        <input type="text" name="description" class="form-control" placeholder="Description" id="description" disabled>
+                                    </div><!-- input-group -->
+                                </div>
+                            </div>
+                            <button class="btn btn-success w-100 text-uppercase" type="submit">Valider l'opération</button>
+                        </div>
+                      
                     </div><!-- card-body -->
                 </div> <!-- card -->
             </div>
+
         </div>
     </div><!-- End row -->
 </form>
 </div>
 <script>
+
+function handlePieceSelection(select) {
+        console.log("Function called");
+        var numeroPieceInput = document.getElementById('numero_piece');
+        var descriptionInput = document.getElementById('description');
+
+        if (select.value === "Proforma" || select.value === "Facture" || select.value === "Ord. Paiement" || select.value === "Cheque") {
+            numeroPieceInput.disabled = false;
+            descriptionInput.disabled = false;
+            numeroPieceInput.setAttribute("required", "required");
+        } else {
+            numeroPieceInput.disabled = true;
+            descriptionInput.disabled = true;
+            numeroPieceInput.removeAttribute("required");
+        }
+    }
+
  $(document).ready(function () {
+
+   
+
     function updateTotalSum() {
         var total = 0;
         $('input[name="montant[]"]').each(function () {
