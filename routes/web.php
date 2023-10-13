@@ -37,6 +37,11 @@ Route::get('/secteur', function () {
     return view('secteurs.create');
 });
 
+Route::get('/show', function () {
+    return view('operations.show');
+});
+
+
 Route::get('/financement', function () {
     return view('financements.create');
 });
