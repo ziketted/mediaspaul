@@ -186,6 +186,7 @@
                                             <li><a href="{{ route('compte.index') }}">Compte</a></li>
                                             <li><a href="{{ route('financement.index') }}">Financement</a></li>
                                             <li><a href="{{ route('secteur.index') }}">Secteur</a></li>
+                                            <li><a href="/Taux">Taux</a></li>
                                         </ul>
                                     </li>
                                 </ul>
