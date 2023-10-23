@@ -71,7 +71,7 @@ class BilletCaisseController extends Controller
         $operation = BilletCaisse::findOrFail($operation->id);
         $operation->total =  $total;
         $operation->save();
-        return redirect()->route('dashboard')->with('status', "Opération réussie avec succès.");
+        return redirect()->back()->with('status', "Opération réussie avec succès.");
     }
 
     /**

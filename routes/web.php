@@ -25,6 +25,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/dash1', function () {
+    return view('operations.dashboard');
+});
+
+Route::get('/dashcompte', function () {
+    return view('operations.dashcompte');
+});
+Route::get('/dashsecteur', function () {
+    return view('operations.dashsecteur');
+});
+
+
+Route::get('/dashcaisse', function () {
+    return view('operations.dashcaisse');
+});
+
 Route::get('/centre', function () {
     return view('centres.create');
 });
@@ -63,6 +79,7 @@ Route::name('operation.')->group(function () {
     Route::get('/operation/{id}', [OperationsController::class, 'create'])->middleware(['auth'])->name('create');
     Route::get('/operation/show/{operation}', [OperationsController::class, 'show'])->name('show');
     Route::get('/rapport', [OperationsController::class, 'rapport'])->name('rapport');
+    Route::get('/sms', [OperationsController::class, 'sms'])->name('sms');
     Route::delete('/operation/{operation}', [OperationsController::class, 'destroy'])->name('destroy');
 });
 
@@ -96,7 +113,6 @@ Route::name('secteur.')->group(function () {
     Route::get('/secteur/index', [SecteurController::class, 'index'])->middleware(['auth'])->name('index');
     Route::post('/secteur/store', [SecteurController::class, 'store'])->middleware(['auth'])->name('store');
     Route::get('/secteur/show/{secteur}', [SecteurController::class, 'show'])->name('show');
-
     Route::delete('/secteur/{secteur}', [SecteurController::class, 'destroy'])->name('destroy');
 });
 

@@ -33,6 +33,8 @@ class CreateBilletCaissesTable extends Migration
             $table->integer('total')->default('0');
             $table->string('piece')->nullable();
             $table->string('num_piece')->nullable();
+            $table->string('description')->nullable();
+
             $table->unsignedBigInteger('secteur_id');
             $table->unsignedBigInteger('financement_id');
             $table->unsignedBigInteger('centre_id');

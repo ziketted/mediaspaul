@@ -7,11 +7,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Http\Requests\StoreOperationsRequest;
 use App\Http\Requests\UpdateOperationsRequest;
+use App\Models\BilletCaisse;
 use App\Models\Caisse;
 use App\Models\Centre;
 use App\Models\Compte;
 use App\Models\Financement;
 use App\Models\Secteur;
+use Illuminate\Support\Facades\DB;
 
 class OperationsController extends Controller
 {
@@ -26,35 +28,44 @@ class OperationsController extends Controller
 
         $caisse_all= Caisse::all();
 
-        $operationSortieAll = Operations::whereDate('date', '<>', Carbon::today())->where('type', 'Sortie')->sum('operations.montant');
-        $operationEntreeAll = Operations::whereDate('date', '<>', Carbon::today())->where('type', 'Entrée')->sum('operations.montant');
+        $operationSortieAll = BilletCaisse::whereDate('date', '<>', Carbon::today())
+                            ->where('type', 'Sortie')->sum('billet_caisses.total');
+        $operationEntreeAll = BilletCaisse::whereDate('date', '<>', Carbon::today())->where('type', 'Entrée')->sum('billet_caisses.total');
         $operationTotalcaisseAll = $operationEntreeAll - $operationSortieAll;
 
-        $operationSortie = Operations::whereDate('date', Carbon::today())->where('type', 'Sortie')->sum('operations.montant');
-        $operationEntree = Operations::whereDate('date', Carbon::today())->where('type', 'Entrée')->sum('operations.montant');
+        $operationSortie = BilletCaisse::whereDate('created_at', Carbon::today())->where('type', 'Sortie')->sum('billet_caisses.total');
+        $operationEntree = BilletCaisse::whereDate('created_at', Carbon::today())->where('type', 'Entrée')->sum('billet_caisses.total');
         $operationTotalcaisse = ($operationTotalcaisseAll + $operationEntree) - $operationSortie;
-        $operations = Operations::whereDate('date', Carbon::today())->get();
-        return view('dashboard', [
-            'operations' => $operations,
-            'operationSortie' => $operationSortie,
-            'operationEntree' => $operationEntree,
-            'operationTotalcaisse' => $operationTotalcaisse,
-            'caisses' => $caisse_all,
-        ]);
+
+        $operations = DB::table('caisses')
+                        ->join('billet_caisses', 'caisses.id', '=', 'billet_caisses.devise')
+                        ->whereDate('billet_caisses.created_at', Carbon::today())
+                        ->select('billet_caisses.*', 'caisses.caisse')
+                        ->get();
+
+
+        return view('dashboard',
+                         [
+                        'operations' => $operations,
+                        'operationSortie' => $operationSortie,
+                        'operationEntree' => $operationEntree,
+                        'operationTotalcaisse' => $operationTotalcaisse,
+                        'caisses' => $caisse_all,
+                         ]);
     }
     public function rapport()
     {
-        $operationSortie = Operations::where('type', 'Sortie')->sum('operations.montant');
-        $operationEntree = Operations::where('type', 'Entrée')->sum('operations.montant');
+        $operationSortie = BilletCaisse::where('type', 'Sortie')->sum('billet_caisses.total');
+        $operationEntree = BilletCaisse::where('type', 'Entrée')->sum('billet_caisses.total');
         $operationTotalcaisse = $operationEntree - $operationSortie;
-
-        $operations = Operations::all();
-        return view('operations.rapport', [
-            'operations' => $operations,
-            'operationSortie' => $operationSortie,
-            'operationEntree' => $operationEntree,
-            'operationTotalcaisse' => $operationTotalcaisse,
-        ]);
+        $operations = BilletCaisse::all();
+        return view('operations.rapport',
+            [
+                'operations' => $operations,
+                'operationSortie' => $operationSortie,
+                'operationEntree' => $operationEntree,
+                'operationTotalcaisse' => $operationTotalcaisse,
+            ]);
     }
 
     /**
@@ -73,9 +84,8 @@ class OperationsController extends Controller
      $comptes=Compte::all();
      $centres=Centre::all();
 
-
-        $operationSortie = Operations::where('type', 'Sortie')->sum('operations.montant');
-        $operationEntree = Operations::where('type', 'Entrée')->sum('operations.montant');
+        $operationSortie = BilletCaisse::where('type', 'Sortie')->sum('billet_caisses.total');
+        $operationEntree = BilletCaisse::where('type', 'Entrée')->sum('billet_caisses.total');
         $operationTotalcaisse = $operationEntree - $operationSortie;
         return view('operations.create', [
             'operationSortie' => $operationSortie,
@@ -108,10 +118,11 @@ class OperationsController extends Controller
         $operation->beneficiaire = $request->beneficiaire;
         $operation->user_id = auth()->user()->id;
         $operation->type = $request->type;
-
-
         $operation->save();
-        return redirect()->route('dashboard')->with('status', "Opération réussie avec succès.");
+
+        return redirect()
+               ->route('dashboard')
+               ->with('status', "Opération réussie avec succès.");
     }
 
     /**
@@ -172,4 +183,34 @@ class OperationsController extends Controller
         $operations->delete();
         return back();
     }
+
+
+    public function sms()
+    {
+
+             $key='dd9ac27d80347a9011f7cadbf1cc359e-63264e13-e2a8-483f-b2de-31e21e2604c7';
+             $base_url='3ggkqj.api.infobip.com';
+
+                    $curl = curl_init();
+                    curl_setopt_array($curl, array(
+                        CURLOPT_URL => 'https://3ggkqj.api.infobip.com/sms/2/text/advanced',
+                        CURLOPT_RETURNTRANSFER => true,
+                        CURLOPT_ENCODING => '',
+                        CURLOPT_MAXREDIRS => 10,
+                        CURLOPT_TIMEOUT => 0,
+                        CURLOPT_FOLLOWLOCATION => true,
+                        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                        CURLOPT_CUSTOMREQUEST => 'POST',
+                        CURLOPT_POSTFIELDS =>'{"messages":[{"destinations":[{"to":"+243821709829"}],"from":"SNEL","text":"Factue Septembre   Bonjour Mr. Gracia Biya Mukendi, Votre facture de la SNEL est de : 117500fc  Futa niongo svp!"}]}',
+                        CURLOPT_HTTPHEADER => array(
+                            "Authorization: App $key",
+                            'Content-Type: application/json',
+                            'Accept: application/json'
+                        ),
+                    ));
+                    $response = curl_exec($curl);
+                    curl_close($curl);
+                    echo $response;
+
+        }
 }

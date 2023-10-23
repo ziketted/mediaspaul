@@ -94,7 +94,7 @@
                                     <td>{{$item->description}}</td>
                                     <td>{{$item->type}}</td>
                                     <td>{{$item->beneficiaire}}</td>
-                                    <td>{{$item->montant}}</td>
+                                    <td>{{$item->total}}</td>
 
 
                                 </tr>

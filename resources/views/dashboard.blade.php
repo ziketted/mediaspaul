@@ -123,10 +123,10 @@
                                 <tr>
                                     <th>Numéro</th>
                                     <th>Date opération</th>
-                                    <th>Désignation</th>
                                     <th>Bénéficiaire</th>
                                     <th>Type</th>
                                     <th>Montant</th>
+                                    <th>Devise</th>
                                     <th>options</th>
                                 </tr>
                             </thead>
@@ -136,11 +136,11 @@
                                 @foreach ($operations as $item)
                                 <tr>
                                     <td>{{$item->id}}</td>
-                                    <td>{{$item->date}}</td>
-                                    <td>{{$item->description}}</td>
+                                    <td>{{$item->created_at}}</td>
                                     <td>{{$item->beneficiaire}}</td>
                                     <td>{{$item->type}}</td>
-                                    <td>{{$item->montant}}</td>
+                                    <td>{{$item->total}}</td>
+                                    <td>{{$item->devise}}</td>
                                     <td>
                                         <a class="btn btn-secondary text-white">Voir </a>
                                         <form action="{{route('operation.destroy',$item->id )  }}" method="POST"

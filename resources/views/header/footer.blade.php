@@ -62,6 +62,21 @@ integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/j
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
 integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
 </script>
+
+        <!--Morris Chart-->
+        <script src="{{ asset('assets/plugins/morris/morris.min.js') }}"></script>
+        <script src="{{ asset('assets/plugins/raphael/raphael.min.js') }}"></script>
+
+        <!-- KNOB JS -->
+        <script src="{{ asset('assets/plugins/jquery-knob/excanvas.js') }}"></script>
+        <script src="{{ asset('assets/plugins/jquery-knob/jquery.knob.js') }}"></script>
+        <script src="{{ asset('assets/plugins/flot-chart/jquery.flot.min.js') }}"></script>
+        <script src="{{ asset('assets/plugins/flot-chart/jquery.flot.tooltip.min.js') }}"></script>
+        <script src="{{ asset('assets/plugins/flot-chart/jquery.flot.resize.js') }}"></script>
+        <script src="{{ asset('assets/plugins/flot-chart/jquery.flot.pie.js') }}"></script>
+        <script src="{{ asset('assets/plugins/flot-chart/jquery.flot.selection.js') }}"></script>
+        <script src="{{ asset('assets/plugins/flot-chart/jquery.flot.stack.js') }}"></script>
+        <script src="{{ asset('assets/plugins/flot-chart/jquery.flot.crosshair.js') }}"></script>
 </body>
 
 </html>

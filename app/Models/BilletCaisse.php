@@ -19,6 +19,7 @@ class BilletCaisse extends Model
         'moyen',
         'piece',
         'num_piece',
+        'description',
         'date',
         'total',
         'secteur_id',
