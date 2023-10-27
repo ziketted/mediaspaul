@@ -159,7 +159,7 @@
                                 <a href="{{route('dashboard')}}"><i class="ti-home"></i> Aujourd'hui</a>
                             </li>
                             <li class="has-submenu">
-                                <a href="#"><i class="ti-panel"></i> Tableau de bord</a>
+                                <a href="{{ route('dash1') }}"><i class="ti-panel"></i> Tableau de bord</a>
                             </li>
 
                             <li class="has-submenu">

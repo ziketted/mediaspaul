@@ -18,5 +18,9 @@ class Compte extends Model
     {
         return $this->belongsTo(\App\Models\User::class);
     }
+    public function detailcaisseCompte()
+    {
+        return $this->hasMany(\App\Models\DetailCaisse::class);
+    }
 
 }

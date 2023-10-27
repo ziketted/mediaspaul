@@ -26,10 +26,10 @@ class OperationsController extends Controller
     {
         //
 
-        $caisse_all= Caisse::all();
+        $caisse_all = Caisse::all();
 
         $operationSortieAll = BilletCaisse::whereDate('date', '<>', Carbon::today())
-                            ->where('type', 'Sortie')->sum('billet_caisses.total');
+            ->where('type', 'Sortie')->sum('billet_caisses.total');
         $operationEntreeAll = BilletCaisse::whereDate('date', '<>', Carbon::today())->where('type', 'Entrée')->sum('billet_caisses.total');
         $operationTotalcaisseAll = $operationEntreeAll - $operationSortieAll;
 
@@ -38,20 +38,22 @@ class OperationsController extends Controller
         $operationTotalcaisse = ($operationTotalcaisseAll + $operationEntree) - $operationSortie;
 
         $operations = DB::table('caisses')
-                        ->join('billet_caisses', 'caisses.id', '=', 'billet_caisses.devise')
-                        ->whereDate('billet_caisses.created_at', Carbon::today())
-                        ->select('billet_caisses.*', 'caisses.caisse')
-                        ->get();
+            ->join('billet_caisses', 'caisses.id', '=', 'billet_caisses.devise')
+            ->whereDate('billet_caisses.created_at', Carbon::today())
+            ->select('billet_caisses.*', 'caisses.caisse')
+            ->get();
 
 
-        return view('dashboard',
-                         [
-                        'operations' => $operations,
-                        'operationSortie' => $operationSortie,
-                        'operationEntree' => $operationEntree,
-                        'operationTotalcaisse' => $operationTotalcaisse,
-                        'caisses' => $caisse_all,
-                         ]);
+        return view(
+            'dashboard',
+            [
+                'operations' => $operations,
+                'operationSortie' => $operationSortie,
+                'operationEntree' => $operationEntree,
+                'operationTotalcaisse' => $operationTotalcaisse,
+                'caisses' => $caisse_all,
+            ]
+        );
     }
     public function rapport()
     {
@@ -59,13 +61,15 @@ class OperationsController extends Controller
         $operationEntree = BilletCaisse::where('type', 'Entrée')->sum('billet_caisses.total');
         $operationTotalcaisse = $operationEntree - $operationSortie;
         $operations = BilletCaisse::all();
-        return view('operations.rapport',
+        return view(
+            'operations.rapport',
             [
                 'operations' => $operations,
                 'operationSortie' => $operationSortie,
                 'operationEntree' => $operationEntree,
                 'operationTotalcaisse' => $operationTotalcaisse,
-            ]);
+            ]
+        );
     }
 
     /**
@@ -77,12 +81,12 @@ class OperationsController extends Controller
     {
         //
 
-     $caisse = $id;
+        $caisse = $id;
 
-     $secteurs=Secteur::all();
-     $financements=Financement::all();
-     $comptes=Compte::all();
-     $centres=Centre::all();
+        $secteurs = Secteur::all();
+        $financements = Financement::all();
+        $comptes = Compte::all();
+        $centres = Centre::all();
 
         $operationSortie = BilletCaisse::where('type', 'Sortie')->sum('billet_caisses.total');
         $operationEntree = BilletCaisse::where('type', 'Entrée')->sum('billet_caisses.total');
@@ -91,11 +95,11 @@ class OperationsController extends Controller
             'operationSortie' => $operationSortie,
             'operationEntree' => $operationEntree,
             'operationTotalcaisse' => $operationTotalcaisse,
-            'caisse'=>$caisse,
-            'secteurs'=>$secteurs,
-            'financements'=>$financements,
-            'comptes'=>$comptes,
-            'centres'=>$centres
+            'caisse' => $caisse,
+            'secteurs' => $secteurs,
+            'financements' => $financements,
+            'comptes' => $comptes,
+            'centres' => $centres
         ]);
     }
 
@@ -105,10 +109,10 @@ class OperationsController extends Controller
      * @param  \App\Http\Requests\StoreOperationsRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Operations $operation )
+    public function store(Request $request, Operations $operation)
     {
 
-        $operation->secteur_id= $request->secteur_id;
+        $operation->secteur_id = $request->secteur_id;
         $operation->financement_id = $request->financement_id;
         $operation->centre_id = $request->centre_id;
         $operation->devise = $request->devise;
@@ -121,8 +125,8 @@ class OperationsController extends Controller
         $operation->save();
 
         return redirect()
-               ->route('dashboard')
-               ->with('status', "Opération réussie avec succès.");
+            ->route('dashboard')
+            ->with('status', "Opération réussie avec succès.");
     }
 
     /**
@@ -183,34 +187,100 @@ class OperationsController extends Controller
         $operations->delete();
         return back();
     }
+    public function dashboard1()
+    {
+        $operationSortie = BilletCaisse::where('type', 'Sortie')->sum('billet_caisses.total');
+        $operationEntree = BilletCaisse::where('type', 'Entrée')->sum('billet_caisses.total');
+        $operationTotalcaisse = $operationEntree - $operationSortie;
+        $operations = BilletCaisse::all();
 
+        //$type='Sortie'
+        //Analyse 2
+        $comparaison_S = DB::select('SELECT type, SUM(total) as somme, MONTHNAME(billet_caisses.date) as mois
+        FROM `billet_caisses` where type='."'Sortie'".' GROUP by type, mois');
+        $comparaison_E = DB::select('SELECT type, SUM(total) as somme, MONTHNAME(billet_caisses.date) as mois
+                                        FROM `billet_caisses` where type='."'Entrée'".' GROUP by type, mois');
+
+        $compa_type_S = [];
+        $compa_somme_type_S = [];
+        $compa_mois_S = [];
+        foreach ($comparaison_S as $key => $value) {
+            $compa_type_S[] = $value->type;
+            $compa_somme_type_S[] = $value->somme;
+            $compa_mois_S[] = $value->mois;
+        }
+
+        $compa_type = [];
+        $compa_somme_type= [];
+        $compa_mois= [];
+        foreach ($comparaison_E as $key => $value) {
+            $compa_type[] = $value->type;
+            $compa_somme_type[] = $value->somme;
+            $compa_mois[] = $value->mois;
+        }
+
+
+
+
+
+        //Analyse Entrée & Sortie
+        $analysis_ES = DB::table('billet_caisses')
+            ->selectRaw('type,sum(total) as somme')
+            ->groupBy('type')
+            ->get();
+
+        $type = [];
+        $somme_type = [];
+        foreach ($analysis_ES as $key => $value) {
+            # code...
+
+            $type[] = $value->type;
+            $somme_type[] = $value->somme;
+        }
+        return view(
+            'operations.dashboard',
+            [
+                'operations' => $operations,
+                'operationSortie' => $operationSortie,
+                'operationEntree' => $operationEntree,
+                'operationTotalcaisse' => $operationTotalcaisse,
+                'type' => $type,
+                'somme_type' => $somme_type,
+                'compa_somme_type' => $compa_somme_type,
+                'compa_type' => $compa_type,
+                'compa_mois' => $compa_mois,
+                'compa_somme_type_S' => $compa_somme_type_S,
+                'compa_type_S' => $compa_type_S,
+                'compa_mois_S' => $compa_mois_S,
+            ]
+        );
+    }
 
     public function sms()
     {
 
-             $key='dd9ac27d80347a9011f7cadbf1cc359e-63264e13-e2a8-483f-b2de-31e21e2604c7';
-             $base_url='3ggkqj.api.infobip.com';
+        $key = 'dd9ac27d80347a9011f7cadbf1cc359e-63264e13-e2a8-483f-b2de-31e21e2604c7';
+        $base_url = '3ggkqj.api.infobip.com';
 
-                    $curl = curl_init();
-                    curl_setopt_array($curl, array(
-                        CURLOPT_URL => 'https://3ggkqj.api.infobip.com/sms/2/text/advanced',
-                        CURLOPT_RETURNTRANSFER => true,
-                        CURLOPT_ENCODING => '',
-                        CURLOPT_MAXREDIRS => 10,
-                        CURLOPT_TIMEOUT => 0,
-                        CURLOPT_FOLLOWLOCATION => true,
-                        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                        CURLOPT_CUSTOMREQUEST => 'POST',
-                        CURLOPT_POSTFIELDS =>'{"messages":[{"destinations":[{"to":"+243821709829"}],"from":"SNEL","text":"Factue Septembre   Bonjour Mr. Gracia Biya Mukendi, Votre facture de la SNEL est de : 117500fc  Futa niongo svp!"}]}',
-                        CURLOPT_HTTPHEADER => array(
-                            "Authorization: App $key",
-                            'Content-Type: application/json',
-                            'Accept: application/json'
-                        ),
-                    ));
-                    $response = curl_exec($curl);
-                    curl_close($curl);
-                    echo $response;
-
-        }
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://3ggkqj.api.infobip.com/sms/2/text/advanced',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => '{"messages":[{"destinations":[{"to":"+243821709829"}],"from":"SNEL","text":"Factue Septembre   Bonjour Mr. Gracia Biya Mukendi, Votre facture de la SNEL est de : 117500fc  Futa niongo svp!"}]}',
+            CURLOPT_HTTPHEADER => array(
+                "Authorization: App $key",
+                'Content-Type: application/json',
+                'Accept: application/json'
+            ),
+        ));
+        $response = curl_exec($curl);
+        curl_close($curl);
+        echo $response;
+    }
 }

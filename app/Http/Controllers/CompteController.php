@@ -6,6 +6,7 @@ use App\Models\Compte;
 use App\Http\Requests\StoreCompteRequest;
 use App\Http\Requests\UpdateCompteRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CompteController extends Controller
 {
@@ -17,7 +18,14 @@ class CompteController extends Controller
     public function index()
     {
         //
-        $comptes=Compte::all();
+       /*  $comptes=Compte::all(); */
+        $comptes = DB::table('detail_caisses')
+                    ->join('comptes', 'detail_caisses.compte_id', '=', 'comptes.id')
+                    ->select('comptes.id','comptes.numero', 'comptes.compte', DB::raw('SUM(detail_caisses.montant) as total'))
+                    ->groupBy('comptes.id','comptes.numero', 'comptes.compte')
+                    ->get();
+
+
         return view('comptes.create', ["comptes"=>$comptes]);
     }
 

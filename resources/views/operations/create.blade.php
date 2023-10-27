@@ -1,18 +1,21 @@
 @include('header.header')
 <div class="wrapper">
-    
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <form action="{{route('operation.store')}}" method="POST">
         @csrf
     <div class="container-fluid">
-       
+
         <div class="row m-5 p-3 ">
             <!-- Basic example -->
             <div class="col-lg-6 mt-4">
-                <div class="alert alert-info alert-dismissible fade show">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                    Votre Billet de Caisse a été validé avec succes. <a href="/show" class="alert-link">Voir toutes les opérations</a>.
-                </div>
+                @if(session('status'))
+                    <div class="alert alert-info alert-dismissible fade show">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        Votre Billet de Caisse a été validé avec succes. <a href="/show" class="alert-link">Voir toutes les opérations</a>.
+                    </div>
+                @endif
+
                 <div class="card">
                     <div class="card-body">
                         <h4 class="m-t-0 m-b-2">Opération de caisse en {{ $caisse }}.</h4>

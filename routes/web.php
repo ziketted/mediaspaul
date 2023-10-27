@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BilletCaisseController;
+use App\Http\Controllers\CaisseController;
 use App\Http\Controllers\CentreController;
 use App\Http\Controllers\CompteController;
 use App\Http\Controllers\FinancementController;
@@ -25,9 +26,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dash1', function () {
-    return view('operations.dashboard');
-});
+
 
 Route::get('/dashcompte', function () {
     return view('operations.dashcompte');
@@ -118,9 +117,13 @@ Route::name('secteur.')->group(function () {
 
 /* Route::name('secteur.')->group(function () {
     Route::get('/secteur/index', [SecteurController::class, 'index'])->middleware(['auth'])->name('create');
-
 }); */
 
+//Caisse
+Route::get('/caisse', [CaisseController::class, 'index'])->middleware(['auth'])->name('caisse.index');
 
+
+//Administration
+Route::get('/dashboard1', [OperationsController::class,'dashboard1'])->middleware(['auth'])->name('dash1');
 
 require __DIR__ . '/auth.php';

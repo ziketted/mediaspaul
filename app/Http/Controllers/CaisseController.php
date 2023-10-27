@@ -16,6 +16,7 @@ class CaisseController extends Controller
     public function index()
     {
         //
+        return view("caisses.index");
     }
 
     /**

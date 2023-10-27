@@ -20,4 +20,9 @@ class DetailCaisse extends Model
     {
         return $this->belongsTo(\App\Models\User::class);
     }
+
+    public function compte()
+    {
+        return $this->belongsTo(\App\Models\Compte::class);
+    }
 }
