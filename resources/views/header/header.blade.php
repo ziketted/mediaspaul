@@ -15,9 +15,12 @@
     <link rel="stylesheet" href="{{ asset('assets/plugins/morris/morris.css') }}">
     <link href="{{asset('assets/plugins/datatables/jquery.dataTables.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{asset('assets/plugins/datatables/buttons.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{asset('assets/plugins/datatables/fixedHeader.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{asset('assets/plugins/datatables/responsive.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{asset('assets/plugins/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('assets/plugins/datatables/fixedHeader.bootstrap4.min.css') }}" rel="stylesheet"
+        type="text/css" />
+    <link href="{{asset('assets/plugins/datatables/responsive.bootstrap4.min.css') }}" rel="stylesheet"
+        type="text/css" />
+    <link href="{{asset('assets/plugins/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet"
+        type="text/css" />
     <link href="{{asset('assets/plugins/datatables/scroller.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{asset('assets/css/icons.css') }}" rel="stylesheet" type="text/css">
@@ -25,11 +28,15 @@
     <link href="{{asset('assets/plugins/timepicker/bootstrap-timepicker.min.css') }}" rel="stylesheet">
     <link href="{{asset('assets/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css') }}" rel="stylesheet">
     <link href="{{asset('assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css') }}" rel="stylesheet">
-    <link href="{{asset('assets/plugins/bootstrap-touchspin/css/jquery.bootstrap-touchspin.min.css') }}" rel="stylesheet" />
+    <link href="{{asset('assets/plugins/bootstrap-touchspin/css/jquery.bootstrap-touchspin.min.css') }}"
+        rel="stylesheet" />
     <link rel="stylesheet" href="{{asset('assets/plugins/morris/morris.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Bootstrap CSS v5.2.1 -->
 
@@ -48,7 +55,8 @@
                         <a href="index.html" class="logo text-primary m-2 p-1 d-flex align-items-end">
                             {{-- <img src="assets/images/logo-light.png" class="logo-lg" alt="" height="26">
                             <img src="assets/images/logo-sm.png" class="logo-sm" alt="" height="28"> --}}
-                            <img src="https://www.mediaspaul.cd/images/logo-mediaspaul-small.png" alt="logo-mediaspaul" height="50">
+                            <img src="https://www.mediaspaul.cd/images/logo-mediaspaul-small.png" alt="logo-mediaspaul"
+                                height="50">
                             <h6> Caisse.</h6>
                         </a>
                     </div>
@@ -64,7 +72,7 @@
                             </li>
                         </ul> --}}
                         <ul class="mb-0 nav navbar-right ml-auto list-inline">
-                           {{--  <li class="list-inline-item dropdown notification-list">
+                            {{-- <li class="list-inline-item dropdown notification-list">
                                 <a href="#" data-target="#"
                                     class="dropdown-toggle waves-effect waves-light notification-icon-box"
                                     data-toggle="dropdown" aria-expanded="true">
@@ -99,7 +107,8 @@
                             <li class="dropdown">
                                 <a href="" class="dropdown-toggle profile waves-effect waves-light"
                                     data-toggle="dropdown" aria-expanded="true">
-                                    <img src="{{ asset('assets/images/users/avatar-1.jpg') }}" alt="user-img" class="rounded-circle">
+                                    <img src="{{ asset('assets/images/users/avatar-1.jpg') }}" alt="user-img"
+                                        class="rounded-circle">
                                     <span class="profile-username">
                                         {{Auth::user()->email}} <span class="mdi mdi-chevron-down font-15"></span>
                                     </span>
@@ -182,7 +191,8 @@
 
 
                             <li class="has-submenu">
-                                <a href="#"><i class="ti-settings"></i> Confirugation <i class="mdi mdi-chevron-down mdi-drop"></i></a>
+                                <a href="#"><i class="ti-settings"></i> Confirugation <i
+                                        class="mdi mdi-chevron-down mdi-drop"></i></a>
                                 <ul class="submenu megamenu">
                                     <li>
                                         <ul>

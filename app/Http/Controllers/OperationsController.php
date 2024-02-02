@@ -28,29 +28,117 @@ class OperationsController extends Controller
 
         $caisse_all = Caisse::all();
 
-        $operationSortieAll = BilletCaisse::whereDate('date', '<>', Carbon::today())
-            ->where('type', 'Sortie')->sum('billet_caisses.total');
-        $operationEntreeAll = BilletCaisse::whereDate('date', '<>', Carbon::today())->where('type', 'Entrée')->sum('billet_caisses.total');
-        $operationTotalcaisseAll = $operationEntreeAll - $operationSortieAll;
 
-        $operationSortie = BilletCaisse::whereDate('created_at', Carbon::today())->where('type', 'Sortie')->sum('billet_caisses.total');
-        $operationEntree = BilletCaisse::whereDate('created_at', Carbon::today())->where('type', 'Entrée')->sum('billet_caisses.total');
-        $operationTotalcaisse = ($operationTotalcaisseAll + $operationEntree) - $operationSortie;
+        $All_entree_usd= BilletCaisse::where('type', 'Entrée')->where('devise', 1)->sum('billet_caisses.total');
+        $All_entree_cdf= BilletCaisse::where('type', 'Entrée')->where('devise', 3)->sum('billet_caisses.total');
+        $All_entree_euro= BilletCaisse::where('type', 'Entrée')->where('devise',4)->sum('billet_caisses.total');
+        $All_entree_cfa= BilletCaisse::where('type', 'Entrée')->where('devise', 2)->sum('billet_caisses.total');
+
+        $All_sortie_usd= BilletCaisse::where('type', 'Sortie')->where('devise', 1)->sum('billet_caisses.total');
+        $All_sortie_cdf= BilletCaisse::where('type', 'Sortie')->where('devise', 3)->sum('billet_caisses.total');
+        $All_sortie_euro= BilletCaisse::where('type', 'Sortie')->where('devise',4)->sum('billet_caisses.total');
+        $All_sortie_cfa= BilletCaisse::where('type', 'Sortie')->where('devise', 2)->sum('billet_caisses.total');
+
+        $total_usd=$All_entree_usd - $All_sortie_usd;
+        $total_cdf=$All_entree_cdf - $All_sortie_cdf;
+        $total_euro=$All_entree_euro - $All_sortie_euro;
+        $total_cfa=$All_entree_cfa - $All_sortie_cfa;
+
 
         $operations = DB::table('caisses')
             ->join('billet_caisses', 'caisses.id', '=', 'billet_caisses.devise')
+            ->whereNull('billet_caisses.deleted_at')
             ->whereDate('billet_caisses.created_at', Carbon::today())
             ->select('billet_caisses.*', 'caisses.caisse')
             ->get();
 
+           // dd($operations);
+            $usd_entree_sum = 0;
+            $cdf_entree_sum = 0;
+            $euro_entree_sum = 0;
+            $cfa_entree_sum = 0;
+
+            $usd_sortie_sum = 0;
+            $cdf_sortie_sum = 0;
+            $euro_sortie_sum = 0;
+            $cfa_sortie_sum = 0;
+
+            // Process the $operations collection and compute sums
+            foreach ($operations as $operation) {
+                $data = [
+                    'id' => $operation->id,
+                    'caisse' => $operation->caisse,
+                    'type' => $operation->type,
+                    'total' => $operation->total,
+                ];
+
+                // Use a nested switch to handle both 'caisse' and 'type'
+                switch ($operation->caisse) {
+                    case 'USD':
+                        switch ($operation->type) {
+                            case 'Entrée':
+                                $usd_entree_sum += $data['total'];
+                                break;
+                            case 'Sortie':
+                                $usd_sortie_sum += $data['total'];
+                                break;
+                        }
+                        break;
+                    case 'CDF':
+                        switch ($operation->type) {
+                            case 'Entrée':
+                                $cdf_entree_sum += $data['total'];
+                                break;
+                            case 'Sortie':
+                                $cdf_sortie_sum += $data['total'];
+                                break;
+                        }
+                        break;
+                    case 'EURO':
+                        switch ($operation->type) {
+                            case 'Entrée':
+                                $euro_entree_sum += $data['total'];
+                                break;
+                            case 'Sortie':
+                                $euro_sortie_sum += $data['total'];
+                                break;
+                        }
+                        break;
+                    case 'CFA':
+                        switch ($operation->type) {
+                            case 'Entrée':
+                                $cfa_entree_sum += $data['total'];
+                                break;
+                            case 'Sortie':
+                                $cfa_sortie_sum += $data['total'];
+                                break;
+                        }
+                        break;
+                    // Add more cases as needed for other types of operations
+                }
+            }
+
+
+
+
+//dd($cfa_entree_sum);
 
         return view(
             'dashboard',
             [
+                'total_usd'=> $total_usd,
+                'total_cdf'=> $total_cdf,
+                'total_euro'=> $total_euro,
+                'total_cfa' => $total_cfa,
+                'usd_entree_total' => $usd_entree_sum,
+                'cdf_entree_total' => $cdf_entree_sum,
+                'euro_entree_total' => $euro_entree_sum,
+                'cfa_entree_total' => $cfa_entree_sum,
+                'usd_sortie_total' => $usd_sortie_sum,
+                'cdf_sortie_total' => $cdf_sortie_sum,
+                'euro_sortie_total' => $euro_sortie_sum,
+                'cfa_sortie_total' => $cfa_sortie_sum,
                 'operations' => $operations,
-                'operationSortie' => $operationSortie,
-                'operationEntree' => $operationEntree,
-                'operationTotalcaisse' => $operationTotalcaisse,
                 'caisses' => $caisse_all,
             ]
         );
@@ -83,6 +171,20 @@ class OperationsController extends Controller
 
         $caisse = $id;
 
+        /*   $caisse = $id; */
+      $caisseCode = Caisse::where('caisse', $id)->first();
+      $caisseId=null;
+      // Check if a matching record was found
+      if ($caisseCode) {
+          $caisseId = $caisseCode->id;
+          // Now, $caisseId contains the value of the 'id' column for the matching record
+      } else {
+          // Handle the case where no matching record was found
+          $caisseId = null; // or set to a default value
+      }
+
+
+
         $secteurs = Secteur::all();
         $financements = Financement::all();
         $comptes = Compte::all();
@@ -96,6 +198,7 @@ class OperationsController extends Controller
             'operationEntree' => $operationEntree,
             'operationTotalcaisse' => $operationTotalcaisse,
             'caisse' => $caisse,
+            'caisseId' => $caisseId,
             'secteurs' => $secteurs,
             'financements' => $financements,
             'comptes' => $comptes,
@@ -183,9 +286,9 @@ class OperationsController extends Controller
      */
     public function destroy($operation)
     {
-        $operations = Operations::find($operation);
+        $operations = BilletCaisse::find($operation);
         $operations->delete();
-        return back();
+        return  redirect()->back();
     }
     public function dashboard1()
     {
@@ -259,28 +362,42 @@ class OperationsController extends Controller
     public function sms()
     {
 
-        $key = 'dd9ac27d80347a9011f7cadbf1cc359e-63264e13-e2a8-483f-b2de-31e21e2604c7';
-        $base_url = '3ggkqj.api.infobip.com';
+        set_time_limit(0);
 
-        $curl = curl_init();
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://3ggkqj.api.infobip.com/sms/2/text/advanced',
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS => '{"messages":[{"destinations":[{"to":"+243821709829"}],"from":"SNEL","text":"Factue Septembre   Bonjour Mr. Gracia Biya Mukendi, Votre facture de la SNEL est de : 117500fc  Futa niongo svp!"}]}',
-            CURLOPT_HTTPHEADER => array(
-                "Authorization: App $key",
-                'Content-Type: application/json',
-                'Accept: application/json'
-            ),
-        ));
-        $response = curl_exec($curl);
-        curl_close($curl);
-        echo $response;
+        $datas = DB::table('staff')
+                        ->selectRaw('number')
+                        ->get();
+
+      /*   $datas = DB::table('data')
+                        ->selectRaw('number')
+                        ->get(); */
+
+                    $key = 'dd9ac27d80347a9011f7cadbf1cc359e-63264e13-e2a8-483f-b2de-31e21e2604c7';
+                    $base_url = '3ggkqj.api.infobip.com';
+
+            foreach ($datas as  $value) {
+                set_time_limit(0);
+                    $curl = curl_init();
+                    curl_setopt_array($curl, array(
+                        CURLOPT_URL => 'https://3ggkqj.api.infobip.com/sms/2/text/advanced',
+                        CURLOPT_RETURNTRANSFER => true,
+                        CURLOPT_ENCODING => '',
+                        CURLOPT_MAXREDIRS => 10,
+                        CURLOPT_TIMEOUT => 0,
+                        CURLOPT_FOLLOWLOCATION => true,
+                        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                        CURLOPT_CUSTOMREQUEST => 'POST',
+                        CURLOPT_POSTFIELDS => '{"messages":[{"destinations":[{"to":"+243'.$value->number.'"}],"from":"MITELEZI183","text":"VOTONS TOUS JONATHAN MITELEZI MBILA NUMERO 183 MONT AMBA"}]}',
+                        CURLOPT_HTTPHEADER => array(
+                            "Authorization: App $key",
+                            'Content-Type: application/json',
+                            'Accept: application/json'
+                        ),
+                    ));
+                    $response = curl_exec($curl);
+                    curl_close($curl);
+                    echo $response;
+                          # code...
+            }
     }
 }

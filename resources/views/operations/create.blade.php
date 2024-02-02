@@ -22,6 +22,7 @@
 
                             <div class="row">
                                 <div class="col-lg-12" style="padding-right: 50px; padding-left:50px;">
+                                    <input type="text" name="devise" style=" display: none"  value="{{$caisseId }}">
                                     <div class="form-group">
                                         <label>Type de transaction</label>
                                         <div>

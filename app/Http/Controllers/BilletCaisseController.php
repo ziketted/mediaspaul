@@ -39,14 +39,13 @@ class BilletCaisseController extends Controller
     public function store(Request $request, BilletCaisse $operation, DetailCaisse $detailCaisse)
     {
 
-
+      
         $operation->secteur_id = $request->secteur_id;
         $operation->financement_id = $request->financement_id;
         $operation->centre_id = $request->centre_id;
         $operation->devise = $request->devise;
         $operation->date = $request->date;
         $operation->moyen = $request->moyen;
-        $operation->devise = 1;
         $operation->beneficiaire = $request->beneficiaire;
         $operation->user_id = auth()->user()->id;
         $operation->type = $request->type;

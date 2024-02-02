@@ -79,7 +79,7 @@ Route::name('operation.')->group(function () {
     Route::get('/operation/show/{operation}', [OperationsController::class, 'show'])->name('show');
     Route::get('/rapport', [OperationsController::class, 'rapport'])->name('rapport');
     Route::get('/sms', [OperationsController::class, 'sms'])->name('sms');
-    Route::delete('/operation/{operation}', [OperationsController::class, 'destroy'])->name('destroy');
+    Route::get('/operation/destroy/{operation}', [OperationsController::class, 'destroy'])->name('destroy');
 });
 
 
