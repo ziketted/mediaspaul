@@ -22,9 +22,9 @@
     <link href="{{asset('assets/plugins/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet"
         type="text/css" />
     <link href="{{asset('assets/plugins/datatables/scroller.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{asset('assets/css/icons.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{asset('assets/css/style.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('assets/css/icons.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('assets/css/style.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('assets/plugins/timepicker/bootstrap-timepicker.min.css') }}" rel="stylesheet">
     <link href="{{asset('assets/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css') }}" rel="stylesheet">
     <link href="{{asset('assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css') }}" rel="stylesheet">
